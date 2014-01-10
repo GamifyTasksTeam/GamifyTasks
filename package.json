@@ -1,0 +1,9 @@
+{
+  "name": "GamifyTasks",
+  "description": "WebsiteGamification",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "express": "3.4.7"
+  }
+}
