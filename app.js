@@ -15,7 +15,6 @@ app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
 app.use(app.router);
-app.use("/js", express.static(__dirname + '/js'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // development only
