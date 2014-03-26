@@ -10,5 +10,11 @@
 			<button {{action "finishTask" task wallet.firstObject}}> Done!</button>
 			<p>Red:{{task.red}}	Green:{{task.green}}	Blue: {{task.blue}}</p>
 		{{/each}}
+		<form>
+			New Task:{{input type='text' value=newTitle}}
+			<br>
+			Red:{{input type='text' value=newRed}} Green:{{input type='text' value=newGreen}} Blue:{{input type='text' value=newBlue}}
+			<button {{action "addTask"}}> Add!</button>
+		</form>
 	</div>
 	</script>
