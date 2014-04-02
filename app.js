@@ -3,6 +3,10 @@ var routes = require('./routes');
 var http = require('http');
 var path = require('path');
 
+//OATH
+var passport = require('passport')
+var GoogleStrategy = require('passport-google').Strategy;
+
 var app = express();
 
 // all environments
@@ -14,6 +18,7 @@ app.use(express.logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
+app.use(passport.initialize());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -30,17 +35,20 @@ http.createServer(app).listen(app.get('port'), function(){
 });
 
 // beginning of OAuth
-var passport = require('passport')
-  , GoogleStrategy = require('passport-google').Strategy;
+
 
 passport.use(new GoogleStrategy({
     returnURL: 'http://localhost:8080/auth/google/return',
     realm: 'http://localhost:8080'
   },
   function(identifier, profile, done) {
-    User.findOrCreate({ openId: identifier }, function(err, user) {
-      done(err, user);
-    });
+    console.log("indentifier: " + identifier);
+	console.log(profile);
+	//console.log(done);
+	done(null,{ openID: identifier} );
+	//User.findOrCreate({ openId: identifier }, function(err, user) {
+    //  done(err, user);
+    //});
   }
 ));
 
@@ -54,5 +62,6 @@ app.get('/auth/google', passport.authenticate('google'));
 // logged in.  Otherwise, authentication has failed.
 app.get('/auth/google/return', 
   passport.authenticate('google', { successRedirect: '/',
-                                    failureRedirect: '/login' }));
+                                    failureRedirect: '/login',
+									session: false}));
 //End of OAuth
