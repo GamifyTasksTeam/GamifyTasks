@@ -11,8 +11,8 @@ var GoogleStrategy = require('passport-google').Strategy;
 var app = express();
 
 // all environments
-app.set('port', process.env.PORT || 9876);
-app.set('host', 'localhost');
+app.set('port', process.env.PORT || 8080);
+app.set('host', process.env.HOST || 'localhost');
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 app.use(express.favicon());
