@@ -11,7 +11,8 @@ var GoogleStrategy = require('passport-google').Strategy;
 var app = express();
 
 // all environments
-app.set('port', process.env.PORT || 8080);
+app.set('port', process.env.PORT || 9876);
+app.set('host', 'localhost');
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 app.use(express.favicon());
@@ -30,6 +31,23 @@ if ('development' == app.get('env')) {
 
 mongoose.connect('mongodb://localhost/GamifyTasks');
 
+var db = mongoose.connection;
+var dbConnected = false; //may be unneccessary to use this
+db.on('error', function() {
+	console.log("error");
+});
+db.once('open', function callback () { 
+   console.log("connected to db");
+   dbConnected = true;
+});
+
+var userSchema = mongoose.Schema({
+	identifier: String,
+	profile: Object
+});
+
+var User = mongoose.model('User', userSchema);
+
 app.get('/', routes.index);
 app.get('/mockup/app',routes.mockupApp);
 
@@ -41,22 +59,30 @@ http.createServer(app).listen(app.get('port'), function(){
 
 
 passport.use(new GoogleStrategy({
-    returnURL: 'http://localhost:8080/auth/google/return',
-    realm: 'http://localhost:8080'
+    returnURL: 'http://' + app.get('host') + ':' + app.get('port') + '/auth/google/return',
+    realm: 'http://' + app.get('host') + ':' + app.get('port')
   },
   function(identifier, profile, done) {
-    console.log("indentifier: " + identifier);
-	console.log(profile);
-	//console.log(done);
-        var db = mongoose.connection;
-        db.on('error', console.error.bind(console, 'connection error:'));
-        db.once('open', function callback () { 
-           console.log("connected to db"):
-        });
-	done(null,{ openID: identifier} );
-	//User.findOrCreate({ openId: identifier }, function(err, user) {
-    //  done(err, user);
-    //});
+
+	if (!dbConnected) {
+		//todo handle error (may be unneccessary)
+	    console.log("database error");
+		done();
+		return;
+	}
+	
+	var user = new User({
+		identifier: identifier,
+		profile: profile
+	});
+	
+	//update/insert into Mongo ("upsert")
+	User.update({identifier: user.identifier},
+	            {identifier: user.identifier, profile: user.profile},
+				{upsert: true},
+				function (err, numberAffected, rawResponse) {
+					done (err, user);
+				});
   }
 ));
 
