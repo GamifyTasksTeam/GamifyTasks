@@ -2,6 +2,7 @@ var express = require('express');
 var routes = require('./routes');
 var http = require('http');
 var path = require('path');
+var mongoose = require('mongoose');
 
 //OATH
 var passport = require('passport')
@@ -27,6 +28,8 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
+mongoose.connect('mongodb://localhost/GamifyTasks');
+
 app.get('/', routes.index);
 app.get('/mockup/app',routes.mockupApp);
 
@@ -45,6 +48,11 @@ passport.use(new GoogleStrategy({
     console.log("indentifier: " + identifier);
 	console.log(profile);
 	//console.log(done);
+        var db = mongoose.connection;
+        db.on('error', console.error.bind(console, 'connection error:'));
+        db.once('open', function callback () { 
+           console.log("connected to db"):
+        });
 	done(null,{ openID: identifier} );
 	//User.findOrCreate({ openId: identifier }, function(err, user) {
     //  done(err, user);
