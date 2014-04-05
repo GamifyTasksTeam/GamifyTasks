@@ -3,7 +3,10 @@ var routes = require('./routes/staticRoutes.js');
 var http = require('http');
 var path = require('path');
 var mongoose = require('mongoose');
-
+// grab the models
+var walletModel = require('./models/wallet.js');
+var rewardsModel = require('./models/rewards.js');
+var tasksModel = require('./models/tasks.js');
 //OATH
 var passport = require('passport')
 var GoogleStrategy = require('passport-google').Strategy;
