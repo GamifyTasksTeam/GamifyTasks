@@ -37,7 +37,7 @@ mongoose.connect('mongodb://localhost/GamifyTasks');
 var db = mongoose.connection;
 var dbConnected = false; //may be unneccessary to use this
 db.on('error', function() {
-	console.log("error");
+	console.log("database error");
 });
 db.once('open', function callback () { 
    console.log("connected to db");
