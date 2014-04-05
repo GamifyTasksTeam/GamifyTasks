@@ -1,5 +1,5 @@
 var express = require('express');
-var routes = require('./routes');
+var routes = require('./routes/staticRoutes.js');
 var http = require('http');
 var path = require('path');
 var mongoose = require('mongoose');
@@ -48,8 +48,13 @@ var userSchema = mongoose.Schema({
 
 var User = mongoose.model('User', userSchema);
 
+//static routes
 app.get('/', routes.index);
-app.get('/mockup/app',routes.mockupApp);
+app.get('/about', routes.about);
+app.get('/contact', routes.contact);
+app.get('/login', routes.login);
+
+app.get('/tasks', routes.tasks);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
