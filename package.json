@@ -1,5 +1,5 @@
 {
-  "name": "application-name",
+  "name": "GamifyTasks",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -12,5 +12,23 @@
     "mongoose": "*",
     "passport": "*",
     "passport-google": "*"
-  }
+  },
+  "description": "GamifyTasks\r ===========",
+  "main": "app.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GamifyTasksTeam/GamifyTasks.git"
+  },
+  "keywords": [
+    "gamification",
+    "web",
+    "app"
+  ],
+  "author": "Dan Minert, Brian Campbell",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/GamifyTasksTeam/GamifyTasks/issues"
+  },
+  "homepage": "https://github.com/GamifyTasksTeam/GamifyTasks"
 }
