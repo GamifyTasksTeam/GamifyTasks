@@ -3,6 +3,7 @@ var routes = require('./routes/staticRoutes.js');
 var http = require('http');
 var path = require('path');
 var mongoose = require('mongoose');
+var User = require('./models/user.js').User
 // grab the models
 var walletModel = require('./models/wallet.js');
 var rewardsModel = require('./models/rewards.js');
@@ -44,12 +45,7 @@ db.once('open', function callback () {
    dbConnected = true;
 });
 
-var userSchema = mongoose.Schema({
-	identifier: String,
-	profile: Object
-});
 
-var User = mongoose.model('User', userSchema);
 
 //static routes
 app.get('/', routes.index);
@@ -107,3 +103,6 @@ app.get('/auth/google/return',
                                     failureRedirect: '/login',
 									session: false}));
 //End of OAuth
+
+//Begin API
+app.get('api/user/:id',require('./routes/api/userAPI.js').getUser);
