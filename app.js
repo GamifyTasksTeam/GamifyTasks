@@ -3,6 +3,8 @@ var routes = require('./routes/staticRoutes.js');
 var http = require('http');
 var path = require('path');
 var mongoose = require('mongoose');
+var cookieParser = require('cookie-parser');
+
 var User = require('./models/user.js').User
 // grab the models
 var walletModel = require('./models/wallet.js');
@@ -19,6 +21,7 @@ app.set('port', process.env.PORT || 8080);
 app.set('host', process.env.HOST || 'localhost');
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
+app.use(cookieParser());
 app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.json());
@@ -27,6 +30,7 @@ app.use(express.methodOverride());
 app.use(passport.initialize());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
+
 
 // development only
 if ('development' == app.get('env')) {
@@ -87,7 +91,7 @@ passport.use(new GoogleStrategy({
 				function (err, numberAffected, rawResponse) {
 					done (err, user);
 				});
-  }
+    }
 ));
 
 // Redirect the user to Google for authentication.  When complete, Google
@@ -99,10 +103,13 @@ app.get('/auth/google', passport.authenticate('google'));
 // the process by verifying the assertion.  If valid, the user will be
 // logged in.  Otherwise, authentication has failed.
 app.get('/auth/google/return', 
-  passport.authenticate('google', { successRedirect: '/',
-                                    failureRedirect: '/login',
-									session: false}));
+    passport.authenticate('google', { failureRedirect: '/login',
+									  session: false }),
+	function (req, res) {
+		res.cookie('userId', req.user._id);
+		res.redirect('/');
+	});
 //End of OAuth
 
 //Begin API
-app.get('api/user/:id',require('./routes/api/userAPI.js').getUser);
+app.get('/api/user/:id',require('./routes/api/userAPI.js').getUser);
