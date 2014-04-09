@@ -74,37 +74,53 @@ passport.use(new GoogleStrategy({
   function(identifier, profile, done) {
 
 	if (!dbConnected) {
-		//todo handle error (may be unneccessary)
 	    console.log("database error");
-		done();
+		done(new Error("An error occurred.  Please try again."));
 		return;
 	}
 	
-	//update/insert into Mongo ("upsert")
-	User.update({identifier: identifier},
-	            {identifier: identifier, profile: profile},
-				{upsert: true},
-				function (err, numberAffected, rawResponse) {
-					if(!err){
-						var user = User.findOne({'identifier': identifier}, function (err, user){
-							if(!err){
-							Wallet.update({userID: user._id},
-							{userID: user._id, 
-							green: 0,
-							purple: 0,
-							red: 0,
-							blue: 0},
-							{upsert: true},
-							function (err, numberAffected, rawResponse) {
-								done (err, user);
-							});
-						}
-						});
-					}
-					
-				});
-	
-    }
+
+
+	// update/insert into Mongo ("upsert")
+	User.update({
+		identifier : identifier
+	}, {
+		identifier : identifier,
+		profile : profile
+	}, {
+		upsert : true
+	}, function(err, numberAffected, rawResponse) {
+		if (!err) {
+			var user = User.findOne({
+				'identifier' : identifier
+			}, function(err, user) {
+				if (!err) {
+					// Add a wallet for the user if necessary
+					Wallet.update({
+						userID : user._id
+					}, {
+						userID : user._id,
+						green : 0,
+						purple : 0,
+						red : 0,
+						blue : 0
+					}, {
+						upsert : true
+					}, function(err, numberAffected, rawResponse) {
+						done(err, user);
+					});
+				}
+				else {
+					done(err);
+				}
+			});
+		}
+		else {
+			done(err);
+		}
+
+	});
+}
 ));
 
 // Redirect the user to Google for authentication.  When complete, Google
