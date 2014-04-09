@@ -1,9 +1,9 @@
 var mongoose = require('mongoose');
 var Wallet = require('../../models/wallet.js').Wallet;
 exports.getWalletByID = function(req,res){
-	return Wallet.findById(req.params.id, function(err,user){
+	return Wallet.findById(req.params.id, function(err,wallet){
 		if(!err){
-			return res.send(user);
+			return res.send(wallet);
 		}else{
 			return console.log(err);
 		}

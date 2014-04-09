@@ -144,3 +144,6 @@ app.get('/auth/google/return',
 app.get('/api/user/:id',require('./routes/api/userAPI.js').getUser);
 app.get('/api/wallet',require('./routes/api/WalletAPI.js').getWalletByUser);
 app.put('/api/wallet',require('./routes/api/WalletAPI.js').updateWalletByUser);
+app.get('/api/task/:id',require('./routes/api/TaskAPI.js').getTaskByID);
+app.get('/api/tasks/all',require('./routes/api/TaskAPI.js').getTasksByUser);
+app.post('/api/task',require('./routes/api/TaskAPI.js').saveTask);
