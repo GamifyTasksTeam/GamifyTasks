@@ -7,4 +7,4 @@ var wallet = new mongoose.Schema({
 	blue: Number
 });
 
-exports.wallet = wallet;
+exports.Wallet = mongoose.model('Wallet', wallet);

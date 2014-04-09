@@ -5,7 +5,8 @@ var path = require('path');
 var mongoose = require('mongoose');
 var cookieParser = require('cookie-parser');
 
-var User = require('./models/user.js').User
+var User = require('./models/user.js').User;
+var Wallet = require('./models/wallet.js').Wallet;
 // grab the models
 var walletModel = require('./models/wallet.js');
 var rewardsModel = require('./models/rewards.js');
@@ -79,18 +80,30 @@ passport.use(new GoogleStrategy({
 		return;
 	}
 	
-	var user = new User({
-		identifier: identifier,
-		profile: profile
-	});
-	
 	//update/insert into Mongo ("upsert")
-	User.update({identifier: user.identifier},
-	            {identifier: user.identifier, profile: user.profile},
+	User.update({identifier: identifier},
+	            {identifier: identifier, profile: profile},
 				{upsert: true},
 				function (err, numberAffected, rawResponse) {
-					done (err, user);
+					if(!err){
+						var user = User.findOne({'identifier': identifier}, function (err, user){
+							if(!err){
+							Wallet.update({userID: user._id},
+							{userID: user._id, 
+							green: 0,
+							purple: 0,
+							red: 0,
+							blue: 0},
+							{upsert: true},
+							function (err, numberAffected, rawResponse) {
+								done (err, user);
+							});
+						}
+						});
+					}
+					
 				});
+	
     }
 ));
 
@@ -113,3 +126,5 @@ app.get('/auth/google/return',
 
 //Begin API
 app.get('/api/user/:id',require('./routes/api/userAPI.js').getUser);
+app.get('/api/wallet',require('./routes/api/WalletAPI.js').getWalletByUser);
+app.put('/api/wallet',require('./routes/api/WalletAPI.js').updateWalletByUser);
