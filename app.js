@@ -124,12 +124,23 @@ app.get('/auth/google/return',
 //End of OAuth
 
 //Begin API
-app.get('/api/user/:id', authenticateUser, require('./routes/api/userAPI.js').getUser);
+//app.get('/api/user/:id', authenticateUser, require('./routes/api/userAPI.js').getUser);
+
+//Wallet
 app.get('/api/wallet', authenticateUser, require('./routes/api/walletAPI.js').getWalletByUser);
 app.put('/api/wallet', authenticateUser, require('./routes/api/walletAPI.js').updateWalletByUser);
+
+//Tasks
 app.get('/api/task/:id', authenticateUser, require('./routes/api/taskAPI.js').getTaskByID);
 app.get('/api/tasks/all', authenticateUser, require('./routes/api/taskAPI.js').getTasksByUser);
 app.post('/api/task', authenticateUser, require('./routes/api/taskAPI.js').saveTask);
+
+// Rewards
+app.get('/api/reward/:id', authenticateUser, require('./routes/api/rewardAPI.js').getRewardByID);
+app.get('/api/reward', authenticateUser, require('./routes/api/rewardAPI.js').getRewardsByUser);
+app.post('/api/reward', authenticateUser, require('./routes/api/rewardAPI.js').addReward);
+app.put('/api/reward/:id', authenticateUser, require('./routes/api/rewardAPI.js').updateReward);
+app.delete('/api/reward/:id', authenticateUser, require('./routes/api/rewardAPI.js').deleteReward);
 
 function authenticateUser(req, res, next) {
 	User.findById(req.session.userId).exec()

@@ -10,7 +10,7 @@ exports.getRewardByID = function(req, res) {
 			// TODO send 404, 500, etc.
 		}
 	});
-}
+};
 
 exports.getRewardsByUser = function(req, res) {
 	Reward.find({ 'userID' : req.session.userId },
@@ -23,7 +23,7 @@ exports.getRewardsByUser = function(req, res) {
 				// TODO send 404, 500, etc.
 			}
 		});
-}
+};
 
 exports.addReward = function(req, res) {
 	task = new Task({
@@ -47,4 +47,12 @@ exports.addReward = function(req, res) {
 			res.send({ id: task._id });
 		}
 	});
-}
+};
+
+exports.updateReward = function(req, res) {
+	res.send("TODO"); //TODO
+};
+
+exports.deleteReward = function(req, res) {
+	res.send("TODO"); //TODO
+};
