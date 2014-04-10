@@ -39,7 +39,6 @@ app.use(passport.initialize());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
-
 // development only
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
@@ -57,22 +56,17 @@ db.once('open', function callback () {
    dbConnected = true;
 });
 
-
-
 //static routes
 app.get('/', routes.index);
 app.get('/about', routes.about);
 app.get('/contact', routes.contact);
 app.get('/login', routes.login);
 
-app.get('/tasks', routes.tasks);
-
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
 
 // beginning of OAuth
-
 
 passport.use(new GoogleStrategy({
     returnURL: 'http://' + app.get('host') + ':' + app.get('port') + '/auth/google/return',
@@ -130,9 +124,24 @@ app.get('/auth/google/return',
 //End of OAuth
 
 //Begin API
-app.get('/api/user/:id',require('./routes/api/userAPI.js').getUser);
-app.get('/api/wallet',require('./routes/api/WalletAPI.js').getWalletByUser);
-app.put('/api/wallet',require('./routes/api/WalletAPI.js').updateWalletByUser);
-app.get('/api/task/:id',require('./routes/api/TaskAPI.js').getTaskByID);
-app.get('/api/tasks/all',require('./routes/api/TaskAPI.js').getTasksByUser);
-app.post('/api/task',require('./routes/api/TaskAPI.js').saveTask);
+app.get('/api/user/:id', authenticateUser, require('./routes/api/userAPI.js').getUser);
+app.get('/api/wallet', authenticateUser, require('./routes/api/WalletAPI.js').getWalletByUser);
+app.put('/api/wallet', authenticateUser, require('./routes/api/WalletAPI.js').updateWalletByUser);
+app.get('/api/task/:id', authenticateUser, require('./routes/api/TaskAPI.js').getTaskByID);
+app.get('/api/tasks/all', authenticateUser, require('./routes/api/TaskAPI.js').getTasksByUser);
+app.post('/api/task', authenticateUser, require('./routes/api/TaskAPI.js').saveTask);
+
+function authenticateUser(req, res, next) {
+	User.findById(req.session.userId).exec()
+	.then(function (user) {
+		if (user) {
+			next();
+		}
+		else {
+			res.send(401, { error: "You must log in" });
+		}
+	},
+	function(err) {
+		res.send(500, { error: "An error occured during authentication" });
+	});
+}
