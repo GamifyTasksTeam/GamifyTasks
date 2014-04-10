@@ -125,11 +125,11 @@ app.get('/auth/google/return',
 
 //Begin API
 app.get('/api/user/:id', authenticateUser, require('./routes/api/userAPI.js').getUser);
-app.get('/api/wallet', authenticateUser, require('./routes/api/WalletAPI.js').getWalletByUser);
-app.put('/api/wallet', authenticateUser, require('./routes/api/WalletAPI.js').updateWalletByUser);
-app.get('/api/task/:id', authenticateUser, require('./routes/api/TaskAPI.js').getTaskByID);
-app.get('/api/tasks/all', authenticateUser, require('./routes/api/TaskAPI.js').getTasksByUser);
-app.post('/api/task', authenticateUser, require('./routes/api/TaskAPI.js').saveTask);
+app.get('/api/wallet', authenticateUser, require('./routes/api/walletAPI.js').getWalletByUser);
+app.put('/api/wallet', authenticateUser, require('./routes/api/walletAPI.js').updateWalletByUser);
+app.get('/api/task/:id', authenticateUser, require('./routes/api/taskAPI.js').getTaskByID);
+app.get('/api/tasks/all', authenticateUser, require('./routes/api/taskAPI.js').getTasksByUser);
+app.post('/api/task', authenticateUser, require('./routes/api/taskAPI.js').saveTask);
 
 function authenticateUser(req, res, next) {
 	User.findById(req.session.userId).exec()
