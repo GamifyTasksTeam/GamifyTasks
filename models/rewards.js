@@ -1,13 +1,14 @@
 var mongoose = require('mongoose');
-var rewards = new mongoose.Schema({
+var rewardSchema = new mongoose.Schema({
 	userID: String,
-	rewards: [{name: String,
+	name: String,
+	categories: {
 		green: Number,
 		purple: Number,
 		red: Number,
 		blue: Number,
-		schedule: String
-	}]
+	},
+	schedule: String
 });
 
-exports.rewards = rewards;
+exports.Reward = mongoose.model('Reward', rewardSchema);
