@@ -86,48 +86,30 @@ passport.use(new GoogleStrategy({
 		return;
 	}
 	
-
-
-	// update/insert into Mongo ("upsert")
-	User.update({
-		identifier : identifier
-	}, {
-		identifier : identifier,
-		profile : profile
-	}, {
-		upsert : true
-	}, function(err, numberAffected, rawResponse) {
-		if (!err) {
-			var user = User.findOne({
-				'identifier' : identifier
-			}, function(err, user) {
-				if (!err) {
-					// Add a wallet for the user if necessary
-					Wallet.update({
-						userID : user._id
-					}, {
-						userID : user._id,
-						green : 0,
-						purple : 0,
-						red : 0,
-						blue : 0
-					}, {
-						upsert : true
-					}, function(err, numberAffected, rawResponse) {
-						done(err, user);
-					});
-				}
-				else {
-					done(err);
-				}
-			});
-		}
-		else {
+	User.update({ identifier : identifier	}, { identifier : identifier, profile : profile }, { upsert : true }).exec()
+	
+	.then(function() {
+		return User.findOne({ 'identifier' : identifier }).exec();
+	})
+	
+	.then(function(user) {
+		Wallet.update({ userID : user._id},	{
+			userID : user._id,
+			green : 0,
+			purple : 0,
+			red : 0,
+			blue : 0 }, { upsert : true }).exec()
+		.then(function() {
+			// Successful login/signup and wallet creation
+			done(null, user);
+		},
+		function(err) {
 			done(err);
-		}
-
+		});
+	}, function(err) {
+		done(err);
 	});
-}
+  }
 ));
 
 // Redirect the user to Google for authentication.  When complete, Google
