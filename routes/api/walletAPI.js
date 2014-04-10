@@ -10,8 +10,8 @@ exports.getWalletByID = function(req,res){
 	});
 }
 
-exports.getWalletByUser = function(req,res){
-	return Wallet.findOne({'userID':req.cookies.userId},function(err,wallet){
+exports.getWalletByUser = function(req,res) {
+	return Wallet.findOne({'userID':req.session.userId},function(err,wallet){
 		if(!err){
 			return res.send(wallet);
 		} else {
@@ -21,7 +21,7 @@ exports.getWalletByUser = function(req,res){
 }
 
 exports.updateWalletByUser = function(req,res){	
-	return Wallet.findOne({'userID':req.cookies.userId},function(err,wallet){
+	return Wallet.findOne({'userID':req.session.userId},function(err,wallet){
 		wallet.green = req.body.green;
 		wallet.purple = req.body.purple;
 		wallet.red = req.body.red;

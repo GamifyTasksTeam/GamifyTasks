@@ -11,7 +11,7 @@ exports.getTaskByID = function(req,res){
 }
 
 exports.getTasksByUser = function(req,res){
-	return Task.find({'userID':req.cookies.userId},function(err,tasks){
+	return Task.find({'userID':req.session.userId},function(err,tasks){
 		if(!err){
 			return res.send(tasks);
 		} else {
@@ -22,7 +22,7 @@ exports.getTasksByUser = function(req,res){
 
 exports.saveTask = function(req,res){
 	task = new Task({
-		userID: req.cookies.userId,
+		userID: req.session.userId,
 		name: req.body.name,
 		green: req.body.green,
 		purple: req.body.purple,

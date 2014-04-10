@@ -3,7 +3,7 @@ var routes = require('./routes/staticRoutes.js');
 var http = require('http');
 var path = require('path');
 var mongoose = require('mongoose');
-var cookieParser = require('cookie-parser');
+var clientSession = require("client-sessions");
 
 var User = require('./models/user.js').User;
 var Wallet = require('./models/wallet.js').Wallet;
@@ -22,7 +22,14 @@ app.set('port', process.env.PORT || 8080);
 app.set('host', process.env.HOST || 'localhost');
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
-app.use(cookieParser());
+
+app.use(clientSession({
+    cookieName: 'session', // cookie name dictates the key name added to the request object
+    secret: process.env.COOKIE_SECRET || 'This is a development secret only.  MAKE SURE to set the environment var.', // should be a large unguessable string
+    duration: 24 * 60 * 60 * 1000, // how long the session will stay valid in ms
+    activeDuration: 1000 * 60 * 5 // if expiresIn < activeDuration, the session will be extended by activeDuration milliseconds
+}));
+
 app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.json());
@@ -135,7 +142,7 @@ app.get('/auth/google/return',
     passport.authenticate('google', { failureRedirect: '/login',
 									  session: false }),
 	function (req, res) {
-		res.cookie('userId', req.user._id);
+	    req.session.userId = req.user._id;
 		res.redirect('/');
 	});
 //End of OAuth

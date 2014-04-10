@@ -5,5 +5,4 @@ var userSchema = mongoose.Schema({
 	profile: Object
 });
 
-var User = mongoose.model('User', userSchema);
-exports.User = User;
+exports.User = mongoose.model('User', userSchema);
