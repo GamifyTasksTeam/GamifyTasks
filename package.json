@@ -12,8 +12,7 @@
     "mongoose": "*",
     "passport": "*",
     "passport-google": "*",
-    "client-sessions": "*",
-    "body-parser": "*"
+    "client-sessions": "*"
   },
   "description": "GamifyTasks\r ===========",
   "main": "app.js",
