@@ -133,7 +133,11 @@ app.put('/api/wallet', authenticateUser, require('./routes/api/walletAPI.js').up
 //Tasks
 app.get('/api/task/:id', authenticateUser, require('./routes/api/taskAPI.js').getTaskByID);
 app.get('/api/tasks/all', authenticateUser, require('./routes/api/taskAPI.js').getTasksByUser);
-app.post('/api/task', authenticateUser, require('./routes/api/taskAPI.js').saveTask);
+app.get('/api/tasks/current', authenticateUser, require('./routes/api/taskAPI.js').getCurrentTasks);
+app.post('/api/task', authenticateUser, require('./routes/api/taskAPI.js').addTask);
+app.put('/api/task/:id', authenticateUser, require('./routes/api/taskAPI.js').updateTask);
+app.put('/api/task/complete/:id', authenticateUser, require('./routes/api/taskAPI.js').completeTask);
+app.delete('/api/task/:id', authenticateUser, require('./routes/api/taskAPI.js').deleteTask);
 
 // Rewards
 app.get('/api/reward/:id', authenticateUser, require('./routes/api/rewardAPI.js').getRewardByID);
