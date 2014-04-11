@@ -29,11 +29,11 @@ exports.addReward = function(req, res) {
 	task = new Task({
 		userID : req.session.userId,
 		name : req.body.name,
-		schedule : {
-			green : req.body.schedule.green,
-			purple : req.body.schedule.purple,
-			red : req.body.schedule.red,
-			blue : req.body.schedule.blue
+		categories : {
+			green : req.body.categories.green,
+			purple : req.body.categories.purple,
+			red : req.body.categories.red,
+			blue : req.body.categories.blue
 		},
 		schedule : req.body.schedule
 	});
