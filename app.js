@@ -4,7 +4,6 @@ var http = require('http');
 var path = require('path');
 var mongoose = require('mongoose');
 var clientSession = require("client-sessions");
-var bodyParser = require('body-parser');
 
 var User = require('./models/user.js').User;
 var Wallet = require('./models/wallet.js').Wallet;
@@ -38,7 +37,6 @@ app.use(express.urlencoded());
 app.use(express.methodOverride());
 app.use(passport.initialize());
 app.use(app.router);
-app.use(bodyParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // development only
