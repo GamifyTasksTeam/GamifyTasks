@@ -1,14 +1,14 @@
 	<script type="text/x-handlebars" data-template-name="gamify">
 	<div class="wallet">
 		{{#each wallet}}
-		<p>Red:{{red}}	Green:{{green}}	Blue: {{blue}}</p>
+		<p>Red:{{red}}	Green:{{green}}	Blue: {{blue}}	Purple: {{purple}}</p>
 		{{/each}}
 	</div>
 	<div class="tasks">
 		{{#each task in tasks}}
-			{{task.task}}
+			{{task.name}}
 			<button {{action "finishTask" task wallet.firstObject}}> Done!</button>
-			<p>Red:{{task.red}}	Green:{{task.green}}	Blue: {{task.blue}}</p>
+			<p>Red:{{task.red}}	Green:{{task.green}}	Blue: {{task.blue}} Purple: {{purple}}	</p>
 		{{/each}}
 		<form>
 			New Task:{{input type='text' value=newTitle}}

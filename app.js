@@ -61,6 +61,7 @@ app.get('/', routes.index);
 app.get('/about', routes.about);
 app.get('/contact', routes.contact);
 app.get('/login', routes.login);
+app.get('/tasks',routes.tasks);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
@@ -127,14 +128,14 @@ app.get('/auth/google/return',
 //app.get('/api/user/:id', authenticateUser, require('./routes/api/userAPI.js').getUser);
 
 //Wallet
-app.get('/api/wallet', authenticateUser, require('./routes/api/walletAPI.js').getWalletByUser);
+app.get('/api/wallets', authenticateUser, require('./routes/api/walletAPI.js').getWalletByUser);
 app.put('/api/wallet', authenticateUser, require('./routes/api/walletAPI.js').updateWalletByUser);
 
 //Tasks
 app.get('/api/task/:id', authenticateUser, require('./routes/api/taskAPI.js').getTaskByID);
-app.get('/api/tasks/all', authenticateUser, require('./routes/api/taskAPI.js').getTasksByUser);
+app.get('/api/tasks', authenticateUser, require('./routes/api/taskAPI.js').getTasksByUser);
 app.get('/api/tasks/current', authenticateUser, require('./routes/api/taskAPI.js').getCurrentTasks);
-app.post('/api/task', authenticateUser, require('./routes/api/taskAPI.js').addTask);
+app.post('/api/tasks', authenticateUser, require('./routes/api/taskAPI.js').addTask);
 app.put('/api/task/:id', authenticateUser, require('./routes/api/taskAPI.js').updateTask);
 app.put('/api/task/complete/:id', authenticateUser, require('./routes/api/taskAPI.js').completeTask);
 app.delete('/api/task/:id', authenticateUser, require('./routes/api/taskAPI.js').deleteTask);

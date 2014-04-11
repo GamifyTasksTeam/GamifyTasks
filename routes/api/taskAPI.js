@@ -15,7 +15,7 @@ exports.getTasksByUser = function(req, res) {
 	Task.find({	'userID' : req.session.userId },
 		function(err, tasks) {
 			if (!err) {
-				res.send(tasks);
+				res.send({"tasks":tasks});
 			}
 			else {
 				console.log(err);

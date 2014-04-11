@@ -12,10 +12,10 @@ exports.getWalletByID = function(req, res) {
 }
 
 exports.getWalletByUser = function(req, res) {
-	Wallet.findOne({ 'userID' : req.session.userId},
+	Wallet.find({ 'userID' : req.session.userId},
 		function(err, wallet) {
 			if (!err) {
-				res.send(wallet);
+				res.send({"wallet":wallet});
 			}
 			else {
 				console.log(err);

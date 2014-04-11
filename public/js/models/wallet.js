@@ -1,14 +1,8 @@
 Gamify.Wallet = DS.Model.extend({
-  red: DS.attr('number'),
-  green: DS.attr('number'),
-  blue: DS.attr('number')
+  "userID": DS.attr('string'),
+	"green": DS.attr('number'),
+	"purple": DS.attr('number'),
+	"red": DS.attr('number'),
+	"blue": DS.attr('number'),
+	"__v" : DS.attr('number')
 });
-
-Gamify.Wallet.FIXTURES = [
-  {
-    id: 1,
-    red: 7,
-    green: 10,
-	blue: 47
-  }
-];

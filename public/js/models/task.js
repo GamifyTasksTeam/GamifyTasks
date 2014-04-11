@@ -1,24 +1,11 @@
 Gamify.Task = DS.Model.extend({
-	 task: DS.attr('string'),
-		red: DS.attr('number'),
-		green: DS.attr('number'),
-		blue: DS.attr('number')
+	 "userID": DS.attr('string'),
+	"name": DS.attr('string'),
+	"green": DS.attr('number'),
+	"purple": DS.attr('number'),
+	"red": DS.attr('number'),
+	"blue": DS.attr('number'),
+	"schedule": DS.attr('string'),
+	"__v" : DS.attr('number')
 });
 
-Gamify.Task.FIXTURES = [
-  {
-    id: 1,
-    task: 'Do this',
-		red: 1,
-		green: 2,
-		blue: 3
-	
-  },
-  {
-	id: 2,
-	task: 'Do that',
-		red: 3,
-		green: 2,
-		blue: 1
-  }
-];
