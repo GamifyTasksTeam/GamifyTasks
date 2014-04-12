@@ -7,8 +7,7 @@ var rewardSchema = new mongoose.Schema({
 		purple: Number,
 		red: Number,
 		blue: Number,
-	},
-	schedule: String
+	}
 });
 
 exports.Reward = mongoose.model('Reward', rewardSchema);

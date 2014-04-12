@@ -15,14 +15,14 @@ Gamify.GamifyController = Ember.ObjectController.extend({
 			blue: parseInt(this.get('newBlue'))
 			});
 
-		// Clear the "New Todo" text field
-		this.set('newTitle', '');
-		this.set('newRed', '');
-		this.set('newGreen', '');
-		this.set('newBlue', '');
-
-		// Save the new model
-		task.save();
+			// Clear the "New Todo" text field
+			this.set('newTitle', '');
+			this.set('newRed', '');
+			this.set('newGreen', '');
+			this.set('newBlue', '');
+	
+			// Save the new model
+			task.save();
 		}
 	}
 });
