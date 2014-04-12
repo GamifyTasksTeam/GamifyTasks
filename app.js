@@ -129,7 +129,7 @@ app.get('/auth/google/return',
 
 //Wallet
 app.get('/api/wallets', authenticateUser, require('./routes/api/walletAPI.js').getWalletByUser);
-app.put('/api/wallet', authenticateUser, require('./routes/api/walletAPI.js').updateWalletByUser);
+app.put('/api/wallet', authenticateUser, require('./routes/api/walletAPI.js').updateWallet);
 
 //Tasks
 app.get('/api/task/:id', authenticateUser, require('./routes/api/taskAPI.js').getTaskByID);

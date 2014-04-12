@@ -23,18 +23,21 @@ exports.getWalletByUser = function(req, res) {
 		});
 }
 
-exports.updateWalletByUser = function(req, res) {
-	Wallet.findOne({ 'userID' : req.session.userId },
-		function(err, wallet) {
-			wallet.green = req.body.green;
-			wallet.purple = req.body.purple;
-			wallet.red = req.body.red;
-			wallet.blue = req.body.blue;
-			wallet.save(function(err) {
-				if (err) {
-					console.log(err);
+exports.updateWallet = function(req, res) {
+	Wallet.findOneAndUpdate({ 'userID' : req.session.userId },
+			{
+				green: req.body.green,
+				purple: req.body.purple,
+				red: req.body.red,
+				blue: req.body.blue
+			},
+			function(err, wallet) {
+				if (!err) {
+					res.send({"wallet" : wallet});
 				}
-				res.send(wallet);
+				else {
+					console.log(err);
+					res.send(500);
+				}
 			});
-		});
 }
