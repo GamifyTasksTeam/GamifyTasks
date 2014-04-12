@@ -61,7 +61,7 @@ app.get('/', routes.index);
 app.get('/about', routes.about);
 app.get('/contact', routes.contact);
 app.get('/login', routes.login);
-app.get('/tasks',routes.tasks);
+app.get('/tasks', routes.app);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
@@ -120,7 +120,7 @@ app.get('/auth/google/return',
 									  session: false }),
 	function (req, res) {
 	    req.session.userId = req.user._id;
-		res.redirect('/');
+		res.redirect('/tasks');
 	});
 //End of OAuth
 

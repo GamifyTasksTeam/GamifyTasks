@@ -3,8 +3,8 @@
  * GET home page.
  */
 
-exports.tasks = function(req, res){
-    res.render('tasks/tasks', { title: 'Gamify Tasks' });
+exports.app = function(req, res){
+    res.render('app/app', { title: 'Gamify Tasks' });
 };
 
 exports.index = function(req, res){
