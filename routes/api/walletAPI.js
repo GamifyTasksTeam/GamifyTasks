@@ -24,8 +24,7 @@ exports.getWalletByUser = function(req, res) {
 }
 
 exports.updateWallet = function(req, res) {
-	console.log(req.body);
-	Wallet.findOneAndUpdate({ 'userID' : req.session.userId },
+	Wallet.findByIdAndUpdate(req.params.id,
 			{
 				green: req.body.wallet.green,
 				purple: req.body.wallet.purple,
@@ -34,7 +33,7 @@ exports.updateWallet = function(req, res) {
 			},
 			function(err, wallet) {
 				if (!err) {
-					res.send({"wallet" : wallet});
+					res.send(200);
 				}
 				else {
 					console.log(err);

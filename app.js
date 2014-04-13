@@ -141,11 +141,11 @@ app.put('/api/task/complete/:id', authenticateUser, require('./routes/api/taskAP
 app.delete('/api/tasks/:id', authenticateUser, require('./routes/api/taskAPI.js').deleteTask);
 
 // Rewards
-app.get('/api/reward/:id', authenticateUser, require('./routes/api/rewardAPI.js').getRewardByID);
+app.get('/api/rewards/:id', authenticateUser, require('./routes/api/rewardAPI.js').getRewardByID);
 app.get('/api/rewards', authenticateUser, require('./routes/api/rewardAPI.js').getRewardsByUser);
-app.post('/api/reward', authenticateUser, require('./routes/api/rewardAPI.js').addReward);
-app.put('/api/reward/:id', authenticateUser, require('./routes/api/rewardAPI.js').updateReward);
-app.delete('/api/reward/:id', authenticateUser, require('./routes/api/rewardAPI.js').deleteReward);
+app.post('/api/rewards', authenticateUser, require('./routes/api/rewardAPI.js').addReward);
+app.put('/api/rewards/:id', authenticateUser, require('./routes/api/rewardAPI.js').updateReward);
+app.delete('/api/rewards/:id', authenticateUser, require('./routes/api/rewardAPI.js').deleteReward);
 
 function authenticateUser(req, res, next) {
 	User.findById(req.session.userId).exec()
