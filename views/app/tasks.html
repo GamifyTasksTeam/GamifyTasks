@@ -1,4 +1,5 @@
-	<div class="tasks">
+	<div id="tasks" class="col-md-6">
+		<h2>Tasks</h2>
 		{{#each task in tasks}}
 			{{task.name}}
 			<button {{action "finishTask" task wallet.firstObject}}> Done!</button>

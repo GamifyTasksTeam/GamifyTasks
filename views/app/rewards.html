@@ -1,4 +1,5 @@
-<div class="rewards">
+<div id="rewards" class="col-md-6">
+	<h2>Rewards</h2>
 	{{#each reward in rewards}}
 		{{reward.name}}
 		<button {{action "redeemReward" reward wallet.firstObject}}> Redeem!</button>
@@ -12,3 +13,6 @@
 	</form>
 
 </div>
+
+
+</div><!-- #tasksAndRewards -->
