@@ -1,15 +1,22 @@
 	<div id="tasks" class="col-md-6">
 		<h2>Tasks</h2>
 		{{#each task in tasks}}
-			{{task.name}}
-			<button {{action "finishTask" task wallet.firstObject}}> Done!</button>
-			<p>Red:{{task.red}}	Green:{{task.green}}	Blue: {{task.blue}} Purple: {{task.purple}}	</p>
+			<div class="row-fluid">
+				<div class="col-md-12">
+					{{task.name}}
+					<button {{action "finishTask" task wallet.firstObject}}> Done!</button>
+					<p>Red:{{task.red}}	Green:{{task.green}}	Blue: {{task.blue}} Purple: {{task.purple}}	</p>
+				</div>
+			</div>
 		{{/each}}
-		<form>
-			New Task:{{input type='text' value=newTitle}}
-			<br>
-			Red:{{input type='text' value=newRed}} Green:{{input type='text' value=newGreen}} Blue:{{input type='text' value=newBlue}} Purple:{{input type='text' value=newPurple}}
-			<button {{action "addTask"}}> Add!</button>
-		</form>
-
+		<div class="row-fluid">
+			<div class="col-md-12">
+				<form id="newTaskForm" {{action "addTask" on="submit"}}>
+					New Task:{{input type='text' value=newTitle}}
+					<br>
+					Red:{{input type='text' value=newRed}} Green:{{input type='text' value=newGreen}} Blue:{{input type='text' value=newBlue}} Purple:{{input type='text' value=newPurple}}
+					<input type='submit' value="Add"></input>
+				</form>
+			</div>
+		</div>
 	</div>
