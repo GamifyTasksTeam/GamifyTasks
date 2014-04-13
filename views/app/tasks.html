@@ -2,12 +2,12 @@
 		{{#each task in tasks}}
 			{{task.name}}
 			<button {{action "finishTask" task wallet.firstObject}}> Done!</button>
-			<p>Red:{{task.red}}	Green:{{task.green}}	Blue: {{task.blue}} Purple: {{purple}}	</p>
+			<p>Red:{{task.red}}	Green:{{task.green}}	Blue: {{task.blue}} Purple: {{task.purple}}	</p>
 		{{/each}}
 		<form>
 			New Task:{{input type='text' value=newTitle}}
 			<br>
-			Red:{{input type='text' value=newRed}} Green:{{input type='text' value=newGreen}} Blue:{{input type='text' value=newBlue}}
+			Red:{{input type='text' value=newRed}} Green:{{input type='text' value=newGreen}} Blue:{{input type='text' value=newBlue}} Purple:{{input type='text' value=newPurple}}
 			<button {{action "addTask"}}> Add!</button>
 		</form>
 
