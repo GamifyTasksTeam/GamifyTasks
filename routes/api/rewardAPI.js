@@ -53,7 +53,7 @@ exports.addReward = function(req, res) {
 	reward.save(function(err) {
 		if (!err) {
 			// Send back reward
-			res.send(200);
+			res.send(200, { reward: reward });
 		}
 		else {
 			console.log(err);
@@ -78,7 +78,7 @@ exports.updateReward = function(req, res) {
 	function(err, reward) {
 		// Send back object if successful
 		if (!err && reward) {
-			res.send(200);
+			res.send(200, { reward: reward });
 		}
 		else {
 			res.send(400);
@@ -91,7 +91,7 @@ exports.updateReward = function(req, res) {
 exports.deleteReward = function(req, res) {
 	Reward.findByIdAndRemove(req.params.id, function(err, reward) {
 		if (!err && reward) {
-			res.send(200);
+			res.send(200, {});
 		}
 		else {
 			console.log(err);
