@@ -6,7 +6,7 @@ var Reward = require('../../models/rewards.js').Reward;
 exports.getRewardByID = function(req, res) {
 	Reward.findById(req.params.id, function(err, reward) {
 		if (!err && reward) {
-			res.send(reward);
+			res.send({ reward: reward});
 		}
 		else {
 			console.log(err);
@@ -39,13 +39,10 @@ exports.addReward = function(req, res) {
 		reward = new Reward({
 			userID : req.session.userId,
 			name : req.body.name,
-			categories : {
-				green : req.body.categories.green,
-				purple : req.body.categories.purple,
-				red : req.body.categories.red,
-				blue : req.body.categories.blue
-			},
-			schedule : req.body.schedule
+			green : req.body.green,
+			purple : req.body.purple,
+			red : req.body.red,
+			blue : req.body.blue
 		});
 	}
 	catch (err) {
@@ -56,7 +53,7 @@ exports.addReward = function(req, res) {
 	reward.save(function(err) {
 		if (!err) {
 			// Send back reward
-			res.send(reward);
+			res.send(200);
 		}
 		else {
 			console.log(err);
@@ -72,19 +69,16 @@ exports.updateReward = function(req, res) {
 	{
 		userID : req.session.userId,
 		name : req.body.name,
-		categories : {
-			green : req.body.categories.green,
-			purple : req.body.categories.purple,
-			red : req.body.categories.red,
-			blue : req.body.categories.blue
-		},
-		schedule : req.body.schedule
+		green : req.body.categories.green,
+		purple : req.body.categories.purple,
+		red : req.body.categories.red,
+		blue : req.body.categories.blue
 	},
 	{ upsert : true },
 	function(err, reward) {
 		// Send back object if successful
 		if (!err && reward) {
-			res.send(reward);
+			res.send(200);
 		}
 		else {
 			res.send(400);
