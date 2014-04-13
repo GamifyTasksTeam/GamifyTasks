@@ -1,9 +1,3 @@
-Gamify.Reward = DS.Model.extend({
-	userID: DS.attr('string'),
-	name: DS.attr('string'),
-	categories: DS.belongsTo('Gamify.Categories')
-});
-
 Gamify.Categories = DS.Model.extend({
 	green: DS.attr('number'),
 	purple: DS.attr('number'),
@@ -12,6 +6,12 @@ Gamify.Categories = DS.Model.extend({
 	reward: DS.belongsTo('Gamify.Reward')
 });
 
-DS.RESTAdapter.map('Gamify.Reward', {
-	categories: { embedded: 'always' }
-};
+Gamify.Reward = DS.Model.extend({
+	userID: DS.attr('string'),
+	name: DS.attr('string'),
+	"__v" : DS.attr('number')
+});
+
+//DS.RESTAdapter.map('Gamify.Reward', {
+//	categories: { embedded: 'always' }
+//});

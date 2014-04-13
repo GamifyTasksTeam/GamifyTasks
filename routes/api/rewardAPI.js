@@ -21,7 +21,7 @@ exports.getRewardsByUser = function(req, res) {
 	Reward.find({ 'userID' : req.session.userId },
 		function(err, rewards) {
 			if (!err && rewards) {
-				res.send(rewards);
+				res.send({ rewards: rewards });
 			}
 			else {
 				console.log(err);
