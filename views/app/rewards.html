@@ -1,5 +1,14 @@
 <div class="rewards">
 	{{#each reward in rewards}}
-		<p>{{reward.name}}</p>
+		{{reward.name}}
+		<button {{action "redeemReward" reward wallet.firstObject}}> Redeem!</button>
+		<p>Red:{{reward.red}}	Green:{{reward.green}}	Blue: {{reward.blue}} Purple: {{reward.purple}}	</p>
 	{{/each}}
+	<form>
+		New reward:{{input type='text' value=newRewardTitle}}
+		<br>
+		Red:{{input type='text' value=newRewardRed}} Green:{{input type='text' value=newRewardGreen}} Blue:{{input type='text' value=newRewardBlue}} Purple:{{input type='text' value=newRewardPurple}}
+		<button {{action "addReward"}}> Add!</button>
+	</form>
+
 </div>

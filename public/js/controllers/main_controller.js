@@ -23,6 +23,35 @@ Gamify.GamifyController = Ember.ObjectController.extend({
 	
 			// Save the new model
 			task.save();
+		},
+		
+		redeemReward: function(reward, wallet) {
+			wallet.set('red', wallet.get('red') - reward.get('red'));
+			wallet.set('green', wallet.get('green') - reward.get('green'));
+			wallet.set('blue', wallet.get('blue') - reward.get('blue'));
+			wallet.set('purple', wallet.get('purple') - reward.get('purple'));
+			reward.deleteRecord();
+		},
+		
+
+		addReward : function() {
+			var reward = this.store.createRecord('reward', {
+				name : this.get('newRewardTitle'),
+				red : parseInt(this.get('newRewardRed')),
+				green : parseInt(this.get('newRewardGreen')),
+				blue : parseInt(this.get('newRewardBlue')),
+				purple : parseInt(this.get('newRewardPurple'))
+			});
+
+			// Clear the "New Todo" text field
+			this.set('newRewardTitle', '');
+			this.set('newRewardRed', '');
+			this.set('newRewardGreen', '');
+			this.set('newRewardBlue', '');
+			this.set('newRewardPurple', '');
+
+			// Save the new model
+			reward.save();
 		}
 	}
 });
