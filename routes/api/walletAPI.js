@@ -33,7 +33,7 @@ exports.updateWallet = function(req, res) {
 			},
 			function(err, wallet) {
 				if (!err) {
-					res.send(200);
+					res.send(200, { wallet: wallet });
 				}
 				else {
 					console.log(err);
