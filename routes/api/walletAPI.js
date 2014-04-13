@@ -24,12 +24,13 @@ exports.getWalletByUser = function(req, res) {
 }
 
 exports.updateWallet = function(req, res) {
+	console.log(req.body);
 	Wallet.findOneAndUpdate({ 'userID' : req.session.userId },
 			{
-				green: req.body.green,
-				purple: req.body.purple,
-				red: req.body.red,
-				blue: req.body.blue
+				green: req.body.wallet.green,
+				purple: req.body.wallet.purple,
+				red: req.body.wallet.red,
+				blue: req.body.wallet.blue
 			},
 			function(err, wallet) {
 				if (!err) {

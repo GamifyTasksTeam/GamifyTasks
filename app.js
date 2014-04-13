@@ -129,7 +129,7 @@ app.get('/auth/google/return',
 
 //Wallet
 app.get('/api/wallets', authenticateUser, require('./routes/api/walletAPI.js').getWalletByUser);
-app.put('/api/wallet', authenticateUser, require('./routes/api/walletAPI.js').updateWallet);
+app.put('/api/wallets/:id', authenticateUser, require('./routes/api/walletAPI.js').updateWallet);
 
 //Tasks
 app.get('/api/task/:id', authenticateUser, require('./routes/api/taskAPI.js').getTaskByID);
@@ -138,7 +138,7 @@ app.get('/api/tasks/current', authenticateUser, require('./routes/api/taskAPI.js
 app.post('/api/tasks', authenticateUser, require('./routes/api/taskAPI.js').addTask);
 app.put('/api/task/:id', authenticateUser, require('./routes/api/taskAPI.js').updateTask);
 app.put('/api/task/complete/:id', authenticateUser, require('./routes/api/taskAPI.js').completeTask);
-app.delete('/api/task/:id', authenticateUser, require('./routes/api/taskAPI.js').deleteTask);
+app.delete('/api/tasks/:id', authenticateUser, require('./routes/api/taskAPI.js').deleteTask);
 
 // Rewards
 app.get('/api/reward/:id', authenticateUser, require('./routes/api/rewardAPI.js').getRewardByID);

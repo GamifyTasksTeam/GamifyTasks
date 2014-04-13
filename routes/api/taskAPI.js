@@ -62,14 +62,15 @@ exports.getCurrentTasks = function(req,res){
 }
 
 exports.addTask = function(req, res) {
+	console.log(req.body);
 	task = new Task({
 		userID : req.session.userId,
-		name : req.body.name,
-		green : req.body.green,
-		purple : req.body.purple,
-		red : req.body.red,
-		blue : req.body.blue,
-		schedule : req.body.schedule
+		name : req.body.task.name,
+		green : req.body.task.green,
+		purple : req.body.task.purple,
+		red : req.body.task.red,
+		blue : req.body.task.blue,
+		schedule : req.body.task.schedule
 	});
 	task.save(function(err) {
 		if (err) {

@@ -5,11 +5,13 @@ Gamify.GamifyController = Ember.ObjectController.extend({
 			wallet.set('green', wallet.get('green')+task.get('green'));
 			wallet.set('blue', wallet.get('blue')+task.get('blue'));
 			task.deleteRecord();
+			task.save();
+			wallet.save();
 		},
 		
 		addTask: function(){
 			 var task = this.store.createRecord('task', {
-			task: this.get('newTitle'),
+			name: this.get('newTitle'),
 			red: parseInt(this.get('newRed')),
 			green: parseInt(this.get('newGreen')),
 			blue: parseInt(this.get('newBlue'))
