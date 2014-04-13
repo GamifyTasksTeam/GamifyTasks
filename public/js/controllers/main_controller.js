@@ -32,6 +32,7 @@ Gamify.GamifyController = Ember.ObjectController.extend({
 			wallet.set('purple', wallet.get('purple') - reward.get('purple'));
 			reward.deleteRecord();
 			
+			reward.save();
 			wallet.save();
 		},
 		
