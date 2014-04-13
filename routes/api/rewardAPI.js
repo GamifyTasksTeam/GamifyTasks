@@ -38,11 +38,11 @@ exports.addReward = function(req, res) {
 	{
 		reward = new Reward({
 			userID : req.session.userId,
-			name : req.body.name,
-			green : req.body.green,
-			purple : req.body.purple,
-			red : req.body.red,
-			blue : req.body.blue
+			name : req.body.reward.name,
+			green : req.body.reward.green,
+			purple : req.body.reward.purple,
+			red : req.body.reward.red,
+			blue : req.body.reward.blue
 		});
 	}
 	catch (err) {
@@ -68,11 +68,11 @@ exports.updateReward = function(req, res) {
 	Reward.findByIdAndUpdate(req.params.id,
 	{
 		userID : req.session.userId,
-		name : req.body.name,
-		green : req.body.categories.green,
-		purple : req.body.categories.purple,
-		red : req.body.categories.red,
-		blue : req.body.categories.blue
+		name : req.body.reward.name,
+		green : req.body.reward.green,
+		purple : req.body.reward.purple,
+		red : req.body.reward.red,
+		blue : req.body.reward.blue
 	},
 	{ upsert : true },
 	function(err, reward) {
