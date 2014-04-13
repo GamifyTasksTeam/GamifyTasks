@@ -62,7 +62,6 @@ exports.getCurrentTasks = function(req,res){
 }
 
 exports.addTask = function(req, res) {
-	console.log(req.body);
 	task = new Task({
 		userID : req.session.userId,
 		name : req.body.task.name,
@@ -77,7 +76,7 @@ exports.addTask = function(req, res) {
 			console.log(err);
 		}
 	});
-	res.send(task);
+	res.send({'task':task});
 }
 
 exports.updateTask = function(req, res){
@@ -135,7 +134,7 @@ exports.deleteTask = function(req,res){
 				task.remove(function(err,task){
 					if(!err)
 					{
-						res.send('OK');
+						res.send({});
 					}else{
 						console.log(err);
 					}
