@@ -5,3 +5,7 @@ body {
 .row-buffer {
 	padding:30px;
 }
+
+.error {
+    color: red;
+}
