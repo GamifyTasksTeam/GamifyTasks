@@ -14,7 +14,10 @@
 				<form id="newTaskForm" {{action "addTask" on="submit"}}>
 					New Task:{{input type='text' value=newTitle}}
 					<br>
-					Red:{{input type='text' value=newRed}} Green:{{input type='text' value=newGreen}} Blue:{{input type='text' value=newBlue}} Purple:{{input type='text' value=newPurple}}
+					<span> Red:{{input type='text' value=newRed name='newTaskRed'}} </span>
+					<span> Green:{{input type='text' value=newGreen name='newTaskGreen'}} </span>
+					<span> Blue:{{input type='text' value=newBlue name='newTaskBlue'}} </span>
+					<span> Purple:{{input type='text' value=newPurple name='newTaskPurple'}} </span>
 					<input type='submit' value="Add"></input>
 				</form>
 			</div>

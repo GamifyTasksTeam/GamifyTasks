@@ -14,7 +14,10 @@
 			<form id="newRewardForm" {{action "addReward" on="submit"}}>
 				New reward:{{input type='text' value=newRewardTitle}}
 				<br>
-				Red:{{input type='text' value=newRewardRed}} Green:{{input type='text' value=newRewardGreen}} Blue:{{input type='text' value=newRewardBlue}} Purple:{{input type='text' value=newRewardPurple}}
+				<span> Red:{{input type='text' value=newRewardRed name='newRewardRed'}} </span> 
+				<span> Green:{{input type='text' value=newRewardGreen name='newRewardGreen'}} </span>
+				<span> Blue:{{input type='text' value=newRewardBlue name='newRewardBlue'}} </span>
+				<span> Purple:{{input type='text' value=newRewardPurple name='newRewardPurple'}} </span>
 				<input type='submit' value="Add"></input>
 			</form>
 		</div>
