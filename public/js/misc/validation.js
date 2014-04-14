@@ -1,20 +1,29 @@
 window.ClientValidation = function() {
+	$.validator.addMethod("integer",function (value, element){
+		return +value === parseInt(value, 10); 
+
+    }, 'This field must contain a valid integer');
+	
 	$("#newTaskForm").validate({
 		rules: {
 			newTaskName: {
 				required: true
 			},
 			newTaskRed: {
-				required: true
+				required: true,
+				integer: true
 			},
 			newTaskGreen: {
-				required: true
+				required: true,
+				integer: true
 			},
 			newTaskBlue: {
-				required: true
+				required: true,
+				integer: true
 			},
 			newTaskPurple: {
-				required: true
+				required: true,
+				integer: true
 			}
 		},
 		messages: {
@@ -22,16 +31,20 @@ window.ClientValidation = function() {
 				required: "Please enter the task name"
 			},
 			newTaskRed: {
-				required: "Please enter the red points"
+				required: "Please enter the red points",
+				integer: "The red points must be an integer"
 			},
 			newTaskGreen: {
-				required: "Please enter the green points"
+				required: "Please enter the green points",
+				integer: "The green points must be an integer"
 			},
 			newTaskBlue: {
-				required: "Please enter the blue points"
+				required: "Please enter the blue points",
+				integer: "The blue points must be an integer"
 			},
 			newTaskPurple: {
-				required: "Please enter the purple points"
+				required: "Please enter the purple points",
+				integer: "The purple points must be an integer"
 			}
 		},
 		errorLabelContainer: "#newTaskFormError",
@@ -44,16 +57,20 @@ window.ClientValidation = function() {
 				required: true
 			},
 			newRewardRed: {
-				required: true
+				required: true,
+				integer: true
 			},
 			newRewardGreen: {
-				required: true
+				required: true,
+				integer: true
 			},
 			newRewardBlue: {
-				required: true
+				required: true,
+				integer: true
 			},
 			newRewardPurple: {
-				required: true
+				required: true,
+				integer: true
 			}
 		},
 		messages: {
@@ -61,16 +78,20 @@ window.ClientValidation = function() {
 				required: "Please enter the reward name"
 			},
 			newRewardRed: {
-				required: "Please enter the red points"
+				required: "Please enter the red points",
+				integer: "The red points must be an integer"
 			},
 			newRewardGreen: {
-				required: "Please enter the green points"
+				required: "Please enter the green points",
+				integer: "The green points must be an integer"
 			},
 			newRewardBlue: {
-				required: "Please enter the blue points"
+				required: "Please enter the blue points",
+				integer: "The blue points must be an integer"
 			},
 			newRewardPurple: {
-				required: "Please enter the purple points"
+				required: "Please enter the purple points",
+				integer: "The purple points must be an integer"
 			}
 		},
 		errorLabelContainer: "#newRewardFormError",
