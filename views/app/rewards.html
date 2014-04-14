@@ -12,7 +12,7 @@
 	<div class="row-fluid">
 		<div class="col-md-12">
 			<form id="newRewardForm" {{action "addReward" on="submit"}}>
-				New reward:{{input type='text' value=newRewardTitle}}
+				New reward:{{input type='text' value=newRewardTitle name='newRewardName'}}
 				<br>
 				<span> Red:{{input type='text' value=newRewardRed name='newRewardRed'}} </span> 
 				<span> Green:{{input type='text' value=newRewardGreen name='newRewardGreen'}} </span>

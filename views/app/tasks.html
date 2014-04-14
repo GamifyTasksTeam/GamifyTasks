@@ -12,7 +12,7 @@
 		<div class="row-fluid">
 			<div class="col-md-12">
 				<form id="newTaskForm" {{action "addTask" on="submit"}}>
-					New Task:{{input type='text' value=newTitle}}
+					New Task:{{input type='text' value=newTitle name='newTaskName'}}
 					<br>
 					<span> Red:{{input type='text' value=newRed name='newTaskRed'}} </span>
 					<span> Green:{{input type='text' value=newGreen name='newTaskGreen'}} </span>

@@ -8,3 +8,10 @@ Gamify.ApplicationAdapter = DS.RESTAdapter.extend({
 Gamify.ApplicationSerializer = DS.RESTSerializer.extend({
   primaryKey: '_id'
 });
+
+Gamify.GamifyView = Ember.View.extend({
+    templateName: 'gamify',
+    didInsertElement: function() {
+    	window.ClientValidation();
+    }
+});
