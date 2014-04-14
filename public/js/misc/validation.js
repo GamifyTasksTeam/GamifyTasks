@@ -1,6 +1,5 @@
 window.ClientValidation = function() {
 	$("#newTaskForm").validate({
-		debug: true,
 		rules: {
 			newTaskRed: {
 				required: true
@@ -21,7 +20,6 @@ window.ClientValidation = function() {
 	});
 	
 	$("#newRewardForm").validate({
-		debug: true,
 		rules: {
 			newRewardRed: {
 				required: true
