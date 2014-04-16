@@ -15,3 +15,8 @@ Gamify.GamifyView = Ember.View.extend({
     	window.ClientValidation();
     }
 });
+
+Gamify.NumberField = Ember.TextField.extend({
+	type: 'number',
+    attributeBindings: ['name', 'min', 'max', 'step']
+});

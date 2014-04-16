@@ -28,10 +28,10 @@
 					<form id="newRewardForm" {{action "addReward" on="submit"}}>
 						New reward:{{input type='text' value=newRewardTitle name='newRewardName'}}
 						<br>
-						<span> Red:{{input type='text' value=newRewardRed name='newRewardRed' maxlength='3' class='redPoints inputPoints' }} </span> 
-						<span> Green:{{input type='text' value=newRewardGreen name='newRewardGreen' maxlength='3' class='greenPoints inputPoints' }} </span>
-						<span> Blue:{{input type='text' value=newRewardBlue name='newRewardBlue' maxlength='3' class='bluePoints inputPoints' }} </span>
-						<span> Purple:{{input type='text' value=newRewardPurple name='newRewardPurple' maxlength='3' class='purplePoints inputPoints' }} </span>
+						<span> Red:{{view Gamify.NumberField min='0' max='999' step='1' value=newRewardRed name='newRewardRed' maxlength='3' class='redPoints inputPoints' }} </span> 
+						<span> Green:{{view Gamify.NumberField min='0' max='999' step='1' value=newRewardGreen name='newRewardGreen' maxlength='3' class='greenPoints inputPoints' }} </span>
+						<span> Blue:{{view Gamify.NumberField min='0' max='999' step='1' value=newRewardBlue name='newRewardBlue' maxlength='3' class='bluePoints inputPoints' }} </span>
+						<span> Purple:{{view Gamify.NumberField min='0' max='999' step='1' value=newRewardPurple name='newRewardPurple' maxlength='3' class='purplePoints inputPoints' }} </span>
 						<input type='submit' value="Add"></input>
 					</form>
 					<ul id="newRewardFormError"></ul>
