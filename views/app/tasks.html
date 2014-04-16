@@ -8,7 +8,7 @@
 							<h3 class="panel-title">{{task.name}}</h3>
 						</div>
 						<div class="panel-body">
-							<p>Red:{{task.red}}	Green:{{task.green}} Blue: {{task.blue}} Purple: {{task.purple}} </p>
+							<span> Red:{{task.red}}	Green:{{task.green}} Blue: {{task.blue}} Purple: {{task.purple}} </span>
 							<button {{action "finishTask" task wallet.firstObject}}> Done</button>
 						</div>
 					</div>				
@@ -25,10 +25,10 @@
 						<form id="newTaskForm" {{action "addTask" on="submit"}}>
 							<div>Name: {{input type='text' value=newTitle name='newTaskName'}}</div>
 		
-							<span> Red:{{input type='text' value=newRed name='newTaskRed'}} </span>
-							<span> Green:{{input type='text' value=newGreen name='newTaskGreen'}} </span>
-							<span> Blue:{{input type='text' value=newBlue name='newTaskBlue'}} </span>
-							<span> Purple:{{input type='text' value=newPurple name='newTaskPurple'}} </span>
+							<span> Red:{{input type='text' value=newRed name='newTaskRed' maxlength='3' class='redPoints inputPoints' }} </span>
+							<span> Green:{{input type='text' value=newGreen name='newTaskGreen' maxlength='3' class='greenPoints inputPoints' }} </span>
+							<span> Blue:{{input type='text' value=newBlue name='newTaskBlue' maxlength='3' class='bluePoints inputPoints' }} </span>
+							<span> Purple:{{input type='text' value=newPurple name='newTaskPurple' maxlength='3' class='purplePoints inputPoints' }} </span>
 							<input type='submit' value="Add"></input>
 						</form>
 						<ul id="newTaskFormError"></ul>

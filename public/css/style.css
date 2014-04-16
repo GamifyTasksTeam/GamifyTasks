@@ -9,3 +9,23 @@ body {
 .error {
     color: red;
 }
+
+.inputPoints {
+	width: 2em;
+}
+
+.redPoints {
+	color: red;
+}
+
+.bluePoints {
+	color: blue;
+}
+
+.greenPoints {
+	color: green;
+}
+
+.purplePoints {
+	color: purple;
+}

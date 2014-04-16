@@ -8,7 +8,7 @@
 						<h3 class="panel-title">{{reward.name}}</h3>
 					</div>
 					<div class="panel-body">
-						<p>Red:{{reward.red}}	Green:{{reward.green}}	Blue: {{reward.blue}} Purple: {{reward.purple}}	</p>
+						<span> Red:{{reward.red}} Green:{{reward.green}} Blue: {{reward.blue}} Purple: {{reward.purple}} </span>
 						<button {{action "redeemReward" reward wallet.firstObject}}> Redeem</button>
 					</div>
 				</div>
@@ -25,10 +25,10 @@
 					<form id="newRewardForm" {{action "addReward" on="submit"}}>
 						New reward:{{input type='text' value=newRewardTitle name='newRewardName'}}
 						<br>
-						<span> Red:{{input type='text' value=newRewardRed name='newRewardRed'}} </span> 
-						<span> Green:{{input type='text' value=newRewardGreen name='newRewardGreen'}} </span>
-						<span> Blue:{{input type='text' value=newRewardBlue name='newRewardBlue'}} </span>
-						<span> Purple:{{input type='text' value=newRewardPurple name='newRewardPurple'}} </span>
+						<span> Red:{{input type='text' value=newRewardRed name='newRewardRed' maxlength='3' class='redPoints inputPoints' }} </span> 
+						<span> Green:{{input type='text' value=newRewardGreen name='newRewardGreen' maxlength='3' class='greenPoints inputPoints' }} </span>
+						<span> Blue:{{input type='text' value=newRewardBlue name='newRewardBlue' maxlength='3' class='bluePoints inputPoints' }} </span>
+						<span> Purple:{{input type='text' value=newRewardPurple name='newRewardPurple' maxlength='3' class='purplePoints inputPoints' }} </span>
 						<input type='submit' value="Add"></input>
 					</form>
 					<ul id="newRewardFormError"></ul>
