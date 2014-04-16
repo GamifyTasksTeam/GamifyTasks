@@ -5,14 +5,14 @@
 				<div class="col-md-12">
 					<div class="panel panel-default">
 						<div class="panel-heading">
-							<h3 class="panel-title">{{task.name}}</h3>
+							<h3 class="panel-title">Task: {{task.name}}</h3>
 						</div>
 						<div class="panel-body">
 							<span> Red: <strong class="redPoints">{{task.red}}</strong></span>
 							<span> Green: <strong class="greenPoints">{{task.green}}</strong></span>
 							<span> Blue: <strong class="bluePoints">{{task.blue}}</strong></span>
 							<span> Purple: <strong class="purplePoints">{{task.purple}}</strong></span>
-							<button {{action "finishTask" task wallet.firstObject}}> Done</button>
+							<button class="btn btn-primary" {{action "finishTask" task wallet.firstObject}}> Done</button>
 						</div>
 					</div>				
 				</div>
@@ -22,7 +22,7 @@
 			<div class="col-md-12">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<h3 class="panel-title">New Task</h3>
+						<h3 class="panel-title">Add New Task</h3>
 					</div>
 					<div class="panel-body">
 						<form id="newTaskForm" {{action "addTask" on="submit"}}>
@@ -32,7 +32,7 @@
 							<span> Green: {{view Gamify.NumberField min='0' max='999' step='1' value=newGreen name='newTaskGreen' maxlength='3' class='greenPoints inputPoints' }} </span>
 							<span> Blue: {{view Gamify.NumberField min='0' max='999' step='1' value=newBlue name='newTaskBlue' maxlength='3' class='bluePoints inputPoints' }} </span>
 							<span> Purple: {{view Gamify.NumberField min='0' max='999' step='1' value=newPurple name='newTaskPurple' maxlength='3' class='purplePoints inputPoints' }} </span>
-							<input type='submit' value="Add"></input>
+							<input class="btn btn-primary" type='submit' value="Add"></input>
 						</form>
 						<ul id="newTaskFormError"></ul>
 					</div>
