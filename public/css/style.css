@@ -35,21 +35,21 @@ body {
 }
 
 .panel-task {
-	border-color: #428bca;
+	border-color: #0066BB;
 }
 .panel-task>.panel-heading {
 	color: #fff;
-	background-color: #428bca;
-	border-color: #428bca;
+	background-color: #0066BB;
+	border-color: #0066BB;
 }
 
 .panel-add-task {
-	border-color: #428bca;
+	border-color: #003366;
 }
 .panel-add-task>.panel-heading {
 	color: #fff;
-	background-color: #428bca;
-	border-color: #428bca;
+	background-color: #003366;
+	border-color: #003366;
 }
 
 .panel-reward {
@@ -62,10 +62,10 @@ body {
 }
 
 .panel-add-reward {
-	border-color: #0C9900;
+	border-color: #075500;
 }
 .panel-add-reward>.panel-heading {
 	color: #fff;
-	background-color: #0C9900;
-	border-color: #0C9900;
+	background-color: #075500;
+	border-color: #075500;
 }
