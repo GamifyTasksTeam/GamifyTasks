@@ -3,9 +3,15 @@
 		{{#each task in tasks}}
 			<div class="row-fluid">
 				<div class="col-md-12">
-					{{task.name}}
-					<button {{action "finishTask" task wallet.firstObject}}> Done!</button>
-					<p>Red:{{task.red}}	Green:{{task.green}}	Blue: {{task.blue}} Purple: {{task.purple}}	</p>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title">{{task.name}}</h3>
+						</div>
+						<div class="panel-body">
+							<p>Red:{{task.red}}	Green:{{task.green}} Blue: {{task.blue}} Purple: {{task.purple}} </p>
+							<button {{action "finishTask" task wallet.firstObject}}> Done</button>
+						</div>
+					</div>				
 				</div>
 			</div>
 		{{/each}}
