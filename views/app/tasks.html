@@ -17,16 +17,23 @@
 		{{/each}}
 		<div class="row-fluid">
 			<div class="col-md-12">
-				<form id="newTaskForm" {{action "addTask" on="submit"}}>
-					New Task:{{input type='text' value=newTitle name='newTaskName'}}
-					<br>
-					<span> Red:{{input type='text' value=newRed name='newTaskRed'}} </span>
-					<span> Green:{{input type='text' value=newGreen name='newTaskGreen'}} </span>
-					<span> Blue:{{input type='text' value=newBlue name='newTaskBlue'}} </span>
-					<span> Purple:{{input type='text' value=newPurple name='newTaskPurple'}} </span>
-					<input type='submit' value="Add"></input>
-				</form>
-				<ul id="newTaskFormError"></ul>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title">New Task</h3>
+					</div>
+					<div class="panel-body">
+						<form id="newTaskForm" {{action "addTask" on="submit"}}>
+							<div>Name: {{input type='text' value=newTitle name='newTaskName'}}</div>
+		
+							<span> Red:{{input type='text' value=newRed name='newTaskRed'}} </span>
+							<span> Green:{{input type='text' value=newGreen name='newTaskGreen'}} </span>
+							<span> Blue:{{input type='text' value=newBlue name='newTaskBlue'}} </span>
+							<span> Purple:{{input type='text' value=newPurple name='newTaskPurple'}} </span>
+							<input type='submit' value="Add"></input>
+						</form>
+						<ul id="newTaskFormError"></ul>
+					</div>
+				</div>			
 			</div>
 		</div>
 	</div>

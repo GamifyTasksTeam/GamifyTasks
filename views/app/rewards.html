@@ -17,16 +17,23 @@
 	{{/each}}
 	<div class="row-fluid">
 		<div class="col-md-12">
-			<form id="newRewardForm" {{action "addReward" on="submit"}}>
-				New reward:{{input type='text' value=newRewardTitle name='newRewardName'}}
-				<br>
-				<span> Red:{{input type='text' value=newRewardRed name='newRewardRed'}} </span> 
-				<span> Green:{{input type='text' value=newRewardGreen name='newRewardGreen'}} </span>
-				<span> Blue:{{input type='text' value=newRewardBlue name='newRewardBlue'}} </span>
-				<span> Purple:{{input type='text' value=newRewardPurple name='newRewardPurple'}} </span>
-				<input type='submit' value="Add"></input>
-			</form>
-			<ul id="newRewardFormError"></ul>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">New Reward</h3>
+				</div>
+				<div class="panel-body">
+					<form id="newRewardForm" {{action "addReward" on="submit"}}>
+						New reward:{{input type='text' value=newRewardTitle name='newRewardName'}}
+						<br>
+						<span> Red:{{input type='text' value=newRewardRed name='newRewardRed'}} </span> 
+						<span> Green:{{input type='text' value=newRewardGreen name='newRewardGreen'}} </span>
+						<span> Blue:{{input type='text' value=newRewardBlue name='newRewardBlue'}} </span>
+						<span> Purple:{{input type='text' value=newRewardPurple name='newRewardPurple'}} </span>
+						<input type='submit' value="Add"></input>
+					</form>
+					<ul id="newRewardFormError"></ul>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
