@@ -8,7 +8,10 @@
 							<h3 class="panel-title">{{task.name}}</h3>
 						</div>
 						<div class="panel-body">
-							<span> Red:{{task.red}}	Green:{{task.green}} Blue: {{task.blue}} Purple: {{task.purple}} </span>
+							<span> Red: <strong class="redPoints">{{task.red}}</strong></span>
+							<span> Green: <strong class="greenPoints">{{task.green}}</strong></span>
+							<span> Blue: <strong class="bluePoints">{{task.blue}}</strong></span>
+							<span> Purple: <strong class="purplePoints">{{task.purple}}</strong></span>
 							<button {{action "finishTask" task wallet.firstObject}}> Done</button>
 						</div>
 					</div>				

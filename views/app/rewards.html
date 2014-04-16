@@ -8,7 +8,10 @@
 						<h3 class="panel-title">{{reward.name}}</h3>
 					</div>
 					<div class="panel-body">
-						<span> Red:{{reward.red}} Green:{{reward.green}} Blue: {{reward.blue}} Purple: {{reward.purple}} </span>
+						<span> Red: <strong class="redPoints">{{reward.red}}</strong> </span>
+						<span> Green: <strong class="greenPoints">{{reward.green}}</strong> </span>
+						<span> Blue: <strong class="bluePoints">{{reward.blue}}</strong> </span>
+						<span> Purple: <strong class="purplePoints">{{reward.purple}}</strong> </span>
 						<button {{action "redeemReward" reward wallet.firstObject}}> Redeem</button>
 					</div>
 				</div>
