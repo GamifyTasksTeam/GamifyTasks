@@ -33,3 +33,39 @@ body {
 .wallet {
 	font-size: 24px;
 }
+
+.panel-task {
+	border-color: #428bca;
+}
+.panel-task>.panel-heading {
+	color: #fff;
+	background-color: #428bca;
+	border-color: #428bca;
+}
+
+.panel-add-task {
+	border-color: #428bca;
+}
+.panel-add-task>.panel-heading {
+	color: #fff;
+	background-color: #428bca;
+	border-color: #428bca;
+}
+
+.panel-reward {
+	border-color: #0C9900;
+}
+.panel-reward>.panel-heading {
+	color: #fff;
+	background-color: #0C9900;
+	border-color: #0C9900;
+}
+
+.panel-add-reward {
+	border-color: #0C9900;
+}
+.panel-add-reward>.panel-heading {
+	color: #fff;
+	background-color: #0C9900;
+	border-color: #0C9900;
+}
