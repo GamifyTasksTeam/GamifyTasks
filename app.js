@@ -61,7 +61,7 @@ app.get('/', routes.index);
 app.get('/about', routes.about);
 app.get('/contact', routes.contact);
 app.get('/login', routes.login);
-app.get('/tasks', routes.app);
+app.get('/tasks', authenticateUserWeb, routes.app);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
@@ -155,6 +155,21 @@ function authenticateUser(req, res, next) {
 		}
 		else {
 			res.send(401, { error: "You must log in" });
+		}
+	},
+	function(err) {
+		res.send(500, { error: "An error occured during authentication" });
+	});
+}
+
+function authenticateUserWeb(req, res, next) {
+	User.findById(req.session.userId).exec()
+	.then(function (user) {
+		if (user) {
+			next();
+		}
+		else {
+			res.redirect("/login");
 		}
 	},
 	function(err) {
