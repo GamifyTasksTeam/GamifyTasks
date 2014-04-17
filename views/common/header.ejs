@@ -8,7 +8,7 @@
     <meta name="author" content="">
     <!--<link rel="shortcut icon" href="../../assets/ico/favicon.ico"> TODO: Create favicon -->
 
-    <title>Gamify Tasks</title>
+    <title><%= title %></title>
 
     <!-- Bootstrap core CSS -->
     <link href="/css/libs/bootstrap.min.css" rel="stylesheet">
@@ -38,7 +38,9 @@
           <ul class="nav navbar-nav">
             <li><a href="/About">About</a></li>
             <li><a href="/Contact">Contact</a></li>
-            <li><a href="/Login">Login</a></li>
+            <% if (!user) { %>
+            	<li><a href="/Login">Login</a></li>
+            <% } %>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
