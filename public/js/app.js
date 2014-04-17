@@ -6,6 +6,7 @@ Gamify.ApplicationAdapter = DS.RESTAdapter.extend({
 		if(jqXHR.status===401){
 			window.location="http://localhost:8080/login";
 		}
+		var error = this._super(jqHXR);
 	}
 	
 });
