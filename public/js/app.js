@@ -1,12 +1,17 @@
 window.Gamify = Ember.Application.create();
 
 Gamify.ApplicationAdapter = DS.RESTAdapter.extend({
-	namespace: "api"
+	namespace: "api",
+	ajaxError: function(jqXHR){
+		if(jqXHR.status===401){
+			window.location="http://localhost:8080/login";
+		}
+	}
 	
 });
 
 Gamify.ApplicationSerializer = DS.RESTSerializer.extend({
-  primaryKey: '_id'
+  primaryKey: '_id',
 });
 
 Gamify.GamifyView = Ember.View.extend({
