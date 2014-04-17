@@ -1,8 +1,3 @@
-
-/*
- * GET home page.
- */
-
 exports.app = function(req, res){
     res.render('app/app', { title: 'Gamify Tasks' });
 };

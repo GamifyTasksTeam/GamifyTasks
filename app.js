@@ -21,7 +21,7 @@ var app = express();
 app.set('port', process.env.PORT || 8080);
 app.set('host', process.env.HOST || 'localhost');
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+app.set('view engine', 'ejs');
 
 app.use(clientSession({
     cookieName: 'session', // cookie name dictates the key name added to the request object
@@ -122,30 +122,6 @@ app.get('/auth/google/return',
 	    req.session.userId = req.user._id;
 		res.redirect('/tasks');
 	});
-//End of OAuth
-
-//Begin API
-//app.get('/api/user/:id', authenticateUser, require('./routes/api/userAPI.js').getUser);
-
-//Wallet
-app.get('/api/wallets', authenticateUser, require('./routes/api/walletAPI.js').getWalletByUser);
-app.put('/api/wallets/:id', authenticateUser, require('./routes/api/walletAPI.js').updateWallet);
-
-//Tasks
-app.get('/api/task/:id', authenticateUser, require('./routes/api/taskAPI.js').getTaskByID);
-app.get('/api/tasks', authenticateUser, require('./routes/api/taskAPI.js').getTasksByUser);
-app.get('/api/tasks/current', authenticateUser, require('./routes/api/taskAPI.js').getCurrentTasks);
-app.post('/api/tasks', authenticateUser, require('./routes/api/taskAPI.js').addTask);
-app.put('/api/tasks/:id', authenticateUser, require('./routes/api/taskAPI.js').updateTask);
-app.put('/api/task/complete/:id', authenticateUser, require('./routes/api/taskAPI.js').completeTask);
-app.delete('/api/tasks/:id', authenticateUser, require('./routes/api/taskAPI.js').deleteTask);
-
-// Rewards
-app.get('/api/rewards/:id', authenticateUser, require('./routes/api/rewardAPI.js').getRewardByID);
-app.get('/api/rewards', authenticateUser, require('./routes/api/rewardAPI.js').getRewardsByUser);
-app.post('/api/rewards', authenticateUser, require('./routes/api/rewardAPI.js').addReward);
-app.put('/api/rewards/:id', authenticateUser, require('./routes/api/rewardAPI.js').updateReward);
-app.delete('/api/rewards/:id', authenticateUser, require('./routes/api/rewardAPI.js').deleteReward);
 
 function authenticateUser(req, res, next) {
 	User.findById(req.session.userId).exec()
@@ -176,3 +152,28 @@ function authenticateUserWeb(req, res, next) {
 		res.send(500, { error: "An error occured during authentication" });
 	});
 }
+
+//End of OAuth
+
+//Begin API
+//app.get('/api/user/:id', authenticateUser, require('./routes/api/userAPI.js').getUser);
+
+//Wallet
+app.get('/api/wallets', authenticateUser, require('./routes/api/walletAPI.js').getWalletByUser);
+app.put('/api/wallets/:id', authenticateUser, require('./routes/api/walletAPI.js').updateWallet);
+
+//Tasks
+app.get('/api/task/:id', authenticateUser, require('./routes/api/taskAPI.js').getTaskByID);
+app.get('/api/tasks', authenticateUser, require('./routes/api/taskAPI.js').getTasksByUser);
+app.get('/api/tasks/current', authenticateUser, require('./routes/api/taskAPI.js').getCurrentTasks);
+app.post('/api/tasks', authenticateUser, require('./routes/api/taskAPI.js').addTask);
+app.put('/api/tasks/:id', authenticateUser, require('./routes/api/taskAPI.js').updateTask);
+app.put('/api/task/complete/:id', authenticateUser, require('./routes/api/taskAPI.js').completeTask);
+app.delete('/api/tasks/:id', authenticateUser, require('./routes/api/taskAPI.js').deleteTask);
+
+// Rewards
+app.get('/api/rewards/:id', authenticateUser, require('./routes/api/rewardAPI.js').getRewardByID);
+app.get('/api/rewards', authenticateUser, require('./routes/api/rewardAPI.js').getRewardsByUser);
+app.post('/api/rewards', authenticateUser, require('./routes/api/rewardAPI.js').addReward);
+app.put('/api/rewards/:id', authenticateUser, require('./routes/api/rewardAPI.js').updateReward);
+app.delete('/api/rewards/:id', authenticateUser, require('./routes/api/rewardAPI.js').deleteReward);
