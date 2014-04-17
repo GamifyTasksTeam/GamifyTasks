@@ -6,6 +6,7 @@
 					<div class="panel panel-task">
 						<div class="panel-heading">
 							<h3 class="panel-title">Task: {{task.name}}</h3>
+							<button class="delete" {{action "deleteTask" task}}>Delete</button>
 						</div>
 						<div class="panel-body">
 							<span> Red: <strong class="redPoints">{{task.red}}</strong></span>

@@ -6,6 +6,7 @@
 				<div class="panel panel-reward">
 					<div class="panel-heading">
 						<h3 class="panel-title">Reward: {{reward.name}}</h3>
+						<button class="delete" {{action "deleteReward" reward}}>Delete</button>
 					</div>
 					<div class="panel-body">
 						<span> Red: <strong class="redPoints">{{reward.red}}</strong> </span>

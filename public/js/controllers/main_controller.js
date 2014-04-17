@@ -30,6 +30,11 @@ Gamify.GamifyController = Ember.ObjectController.extend({
 			task.save();
 		},
 		
+		deleteTask: function(task){
+			task.deleteRecord();
+			task.save();
+		},
+		
 		redeemReward: function(reward, wallet) {
 			wallet.set('red', wallet.get('red') - reward.get('red'));
 			wallet.set('green', wallet.get('green') - reward.get('green'));
@@ -58,6 +63,11 @@ Gamify.GamifyController = Ember.ObjectController.extend({
 			this.set('newRewardPurple', '');
 
 			// Save the new model
+			reward.save();
+		},
+		
+		deleteReward: function(reward){
+			reward.deleteRecord();
 			reward.save();
 		}
 	}
