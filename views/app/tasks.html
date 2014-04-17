@@ -7,13 +7,24 @@
 						<div class="panel-heading">
 							<h3 class="panel-title">Task: {{task.name}}</h3>
 							<button class="delete" {{action "deleteTask" task}}>Delete</button>
+							<button class="delete" {{action "startEditTask" task}}>Edit</button>
 						</div>
-						<div class="panel-body">
+						<div class="panel-body" {{bindAttr id="task.normalId"}}>
+						
 							<span> Red: <strong class="redPoints">{{task.red}}</strong></span>
 							<span> Green: <strong class="greenPoints">{{task.green}}</strong></span>
 							<span> Blue: <strong class="bluePoints">{{task.blue}}</strong></span>
 							<span> Purple: <strong class="purplePoints">{{task.purple}}</strong></span>
 							<button class="btn btn-primary" {{action "finishTask" task wallet.firstObject}}> Done</button>
+						</div>
+						<div class="panel-body" {{bindAttr id="task.editId"}} hidden>
+							<div>Name: {{input type='text' value=task.name name='updateTaskName'}}</div>
+							
+							<span> Red: {{view Gamify.NumberField min='0' max='999' step='1' value=task.red name='updateTaskRed' maxlength='3' class='redPoints inputPoints' }} </span>
+							<span> Green: {{view Gamify.NumberField min='0' max='999' step='1' value=task.green name='updateTaskGreen' maxlength='3' class='greenPoints inputPoints' }} </span>
+							<span> Blue: {{view Gamify.NumberField min='0' max='999' step='1' value=task.blue name='updateTaskBlue' maxlength='3' class='bluePoints inputPoints' }} </span>
+							<span> Purple: {{view Gamify.NumberField min='0' max='999' step='1' value=task.purple name='updateTaskPurple' maxlength='3' class='purplePoints inputPoints' }} </span>
+							<button class="btn btn-primary" {{action "finishEditTask" task wallet.firstObject}}> Save</button>
 						</div>
 					</div>				
 				</div>

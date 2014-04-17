@@ -30,6 +30,21 @@ Gamify.GamifyController = Ember.ObjectController.extend({
 			task.save();
 		},
 		
+		startEditTask: function(task){
+			var normal = "#"+task.id+"normal";
+			var edit = "#"+task.id+"edit";
+			jQuery(normal).hide();
+			jQuery(edit).show();
+		},
+		
+		finishEditTask: function(task){
+			task.save();
+			var normal = "#"+task.id+"normal";
+			var edit = "#"+task.id+"edit";
+			jQuery(edit).hide();
+			jQuery(normal).show();
+		},
+		
 		deleteTask: function(task){
 			task.deleteRecord();
 			task.save();

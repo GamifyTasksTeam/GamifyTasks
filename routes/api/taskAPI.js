@@ -85,14 +85,19 @@ exports.updateTask = function(req, res){
 			if(task.userID != req.session.userId){
 				res.send(403)
 			}else{
-				task.name = req.body.name;
-				task.green = req.body.green;
-				task.purple = req.body.purple;
-				task.red = req.body.red;
-				task.blue = req.body.blue;
-				task.schedule = req.body.schedule;
+				task.name = req.body.task.name;
+				task.green = req.body.task.green;
+				task.purple = req.body.task.purple;
+				task.red = req.body.task.red;
+				task.blue = req.body.task.blue;
+				//task.schedule = req.body.schedule;
 				task.save(function(err){
-					console.log(err);
+					if(err){
+						console.log(err);
+						res.send(500);
+					}else{
+						res.send({'task':task});
+					}
 				});
 			}
 		} else {

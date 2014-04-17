@@ -136,7 +136,7 @@ app.get('/api/task/:id', authenticateUser, require('./routes/api/taskAPI.js').ge
 app.get('/api/tasks', authenticateUser, require('./routes/api/taskAPI.js').getTasksByUser);
 app.get('/api/tasks/current', authenticateUser, require('./routes/api/taskAPI.js').getCurrentTasks);
 app.post('/api/tasks', authenticateUser, require('./routes/api/taskAPI.js').addTask);
-app.put('/api/task/:id', authenticateUser, require('./routes/api/taskAPI.js').updateTask);
+app.put('/api/tasks/:id', authenticateUser, require('./routes/api/taskAPI.js').updateTask);
 app.put('/api/task/complete/:id', authenticateUser, require('./routes/api/taskAPI.js').completeTask);
 app.delete('/api/tasks/:id', authenticateUser, require('./routes/api/taskAPI.js').deleteTask);
 
