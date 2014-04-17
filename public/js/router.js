@@ -9,9 +9,5 @@ Gamify.GamifyRoute = Ember.Route.extend({
 	tasks: this.store.find('task'),
 	rewards: this.store.find('reward')
 	})
-  },
-  setupController: function(controller, model){
-	controller.set('model', model);//UsersEditController
-    this.controllerFor('task').set('model',this.store.find('task'));
   }
 });

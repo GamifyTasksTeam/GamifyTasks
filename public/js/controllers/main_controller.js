@@ -80,6 +80,20 @@ Gamify.GamifyController = Ember.ObjectController.extend({
 			// Save the new model
 			reward.save();
 		},
+		startEditReward: function(reward){
+			var normal = "#"+reward.id+"normal";
+			var edit = "#"+reward.id+"edit";
+			jQuery(normal).hide();
+			jQuery(edit).show();
+		},
+		
+		finishEditReward: function(reward){
+			reward.save();
+			var normal = "#"+reward.id+"normal";
+			var edit = "#"+reward.id+"edit";
+			jQuery(edit).hide();
+			jQuery(normal).show();
+		},
 		
 		deleteReward: function(reward){
 			reward.deleteRecord();
