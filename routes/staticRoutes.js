@@ -75,3 +75,8 @@ exports.login = function(req, res) {
 	});
 
 };
+
+exports.logout = function(req, res) {
+	req.session.userId = null;
+	res.redirect("/");
+}

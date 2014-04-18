@@ -41,8 +41,13 @@
 			<% } %>
             <li><a href="/About">About</a></li>
             <li><a href="/Contact">Contact</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
             <% if (!user) { %>
             	<li><a href="/Login">Login</a></li>
+            <% } %>
+            <% if (user) { %>
+            	<li><a href="/Logout">Logout</a></li>
             <% } %>
           </ul>
         </div><!--/.nav-collapse -->

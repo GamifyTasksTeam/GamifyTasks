@@ -61,6 +61,7 @@ app.get('/', routes.index);
 app.get('/about', routes.about);
 app.get('/contact', routes.contact);
 app.get('/login', routes.login);
+app.get('/logout', routes.logout);
 app.get('/tasks', authenticateUserWeb, routes.app);
 
 http.createServer(app).listen(app.get('port'), function(){
