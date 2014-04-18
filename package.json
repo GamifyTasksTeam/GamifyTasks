@@ -12,7 +12,8 @@
     "passport": "*",
     "passport-google": "*",
     "client-sessions": "*",
-    "ejs": "*"
+    "ejs": "*",
+    "express-force-ssl": "~0.2.0"
   },
   "description": "GamifyTasks\r ===========",
   "main": "app.js",

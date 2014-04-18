@@ -1,6 +1,11 @@
 var express = require('express');
 var routes = require('./routes/staticRoutes.js');
+
 var http = require('http');
+var https = require('https');
+var forceSSL = require('express-force-ssl');
+var fs = require('fs');
+
 var path = require('path');
 var mongoose = require('mongoose');
 var clientSession = require("client-sessions");
@@ -19,6 +24,7 @@ var app = express();
 
 // all environments
 app.set('port', process.env.PORT || 8080);
+app.set('httpsPort', process.env.SSL_PORT || 8443)
 app.set('host', process.env.HOST || 'localhost');
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -30,6 +36,7 @@ app.use(clientSession({
     activeDuration: 1000 * 60 * 5 // if expiresIn < activeDuration, the session will be extended by activeDuration milliseconds
 }));
 
+app.use(forceSSL);
 app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.json());
@@ -63,6 +70,22 @@ app.get('/contact', routes.contact);
 app.get('/login', routes.login);
 app.get('/logout', routes.logout);
 app.get('/tasks', authenticateUserWeb, routes.app);
+
+var options = {};
+
+if ('development' == app.get('env')) {
+	options.key = fs.readFileSync('devKeys/key.pem');
+	options.cert = fs.readFileSync('devKeys/cert.pem');
+}
+else {
+	//TODO production keys
+	options.key = fs.readFileSync('devKeys/key.pem');
+	options.cert = fs.readFileSync('devKeys/cert.pem');
+}
+
+https.createServer(options, app).listen(app.get('httpsPort'), function() {
+	console.log('Express secure server listening on port ' + app.get('httpsPort'));
+});
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
