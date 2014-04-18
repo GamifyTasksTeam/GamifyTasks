@@ -47,6 +47,7 @@
             	<li><a href="/Login">Login</a></li>
             <% } %>
             <% if (user) { %>
+            	<p class="navbar-text">Welcome <%=user.profile.name.givenName%>!</p>
             	<li><a href="/Logout">Logout</a></li>
             <% } %>
           </ul>
