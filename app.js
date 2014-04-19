@@ -98,8 +98,8 @@ http.createServer(app).listen(app.get('port'), function(){
 // beginning of OAuth
 
 passport.use(new GoogleStrategy({
-    returnURL: 'http://' + app.get('host') + ':' + app.get('port') + '/auth/google/return',
-    realm: 'http://' + app.get('host') + ':' + app.get('port')
+    returnURL: 'https://' + app.get('host') + ':' + app.get('httpsPort') + '/auth/google/return',
+    realm: 'https://' + app.get('host') + ':' + app.get('httpsPort')
   },
   function(identifier, profile, done) {
 
@@ -116,19 +116,30 @@ passport.use(new GoogleStrategy({
 	})
 	
 	.then(function(user) {
-		Wallet.update({ userID : user._id},	{
-			userID : user._id,
-			green : 0,
-			purple : 0,
-			red : 0,
-			blue : 0 }, { upsert : true }).exec()
-		.then(function() {
-			// Successful login/signup and wallet creation
-			done(null, user);
+		Wallet.findOne({ userID : user._id}).exec()
+		.then(function(wallet) {
+			if (!wallet) {
+				Wallet.update({ userID : user._id},	{
+					userID : user._id,
+					green : 0,
+					purple : 0,
+					red : 0,
+					blue : 0 }, { upsert : true }).exec()
+				.then(function() {
+					// Successful login/signup and wallet creation
+					done(null, user);
+				},
+				function(err) {
+					done(err);
+				});
+			}
+			else {
+				done(null, user);
+			}
 		},
 		function(err) {
 			done(err);
-		});
+		})
 	}, function(err) {
 		done(err);
 	});
