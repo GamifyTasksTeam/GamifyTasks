@@ -15,7 +15,7 @@
 							<span> Green: <strong class="greenPoints">{{reward.green}}</strong></span>
 							<span> Blue: <strong class="bluePoints">{{reward.blue}}</strong></span>
 							<span> Purple: <strong class="purplePoints">{{reward.purple}}</strong></span>
-							<button class="btn btn-primary" {{action "redeemReward" reward wallet.firstObject}}> Done</button>
+							<button class="btn btn-primary pull-right" {{action "redeemReward" reward wallet.firstObject}}><span class="glyphicon glyphicon-ok"></span> Done</button>
 						</div>
 						<div class="panel-body" {{bindAttr id="reward.editId"}} hidden>
 							<div>Name: {{input type='text' value=reward.name name='updateRewardName'}}</div>
@@ -24,7 +24,7 @@
 							<span> Green: {{view Gamify.NumberField min='0' max='999' step='1' value=reward.green name='updateRewardGreen' maxlength='3' class='greenPoints inputPoints' }} </span>
 							<span> Blue: {{view Gamify.NumberField min='0' max='999' step='1' value=reward.blue name='updateRewardBlue' maxlength='3' class='bluePoints inputPoints' }} </span>
 							<span> Purple: {{view Gamify.NumberField min='0' max='999' step='1' value=reward.purple name='updateRewardPurple' maxlength='3' class='purplePoints inputPoints' }} </span>
-							<button class="btn btn-primary" {{action "finishEditReward" reward wallet.firstObject}}> Save</button>
+							<button class="btn btn-primary pull-right" {{action "finishEditReward" reward wallet.firstObject}}><span class="glyphicon glyphicon-ok"></span> Save</button>
 						</div>
 				</div>
 			</div>
@@ -44,7 +44,9 @@
 						<span> Green:{{view Gamify.NumberField min='0' max='999' step='1' value=newRewardGreen name='newRewardGreen' maxlength='3' class='greenPoints inputPoints' }} </span>
 						<span> Blue:{{view Gamify.NumberField min='0' max='999' step='1' value=newRewardBlue name='newRewardBlue' maxlength='3' class='bluePoints inputPoints' }} </span>
 						<span> Purple:{{view Gamify.NumberField min='0' max='999' step='1' value=newRewardPurple name='newRewardPurple' maxlength='3' class='purplePoints inputPoints' }} </span>
-						<input class="btn btn-primary" type='submit' value="Add"></input>
+						<button class="btn btn-primary pull-right" type='submit'>
+							<span class="glyphicon glyphicon-plus"></span> Add
+						</button>
 					</form>
 					<ul id="newRewardFormError"></ul>
 				</div>
