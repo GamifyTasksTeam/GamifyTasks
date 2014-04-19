@@ -6,8 +6,6 @@
 				<div class="panel panel-reward">
 					<div class="panel-heading">
 						<h3 class="panel-title">Reward: {{reward.name}}</h3>
-						<button class="btn btn-default" {{action "deleteReward" reward}}><span class="glyphicon glyphicon-remove-circle"></span> Delete</button>
-						<button class="btn btn-default" {{action "startEditReward" reward}}><span class="glyphicon glyphicon-pencil"></span> Edit</button>
 					</div>
 					<div class="panel-body" {{bindAttr id="reward.normalId"}}>
 						
@@ -15,7 +13,11 @@
 							<span> Green: <strong class="greenPoints">{{reward.green}}</strong></span>
 							<span> Blue: <strong class="bluePoints">{{reward.blue}}</strong></span>
 							<span> Purple: <strong class="purplePoints">{{reward.purple}}</strong></span>
-							<button class="btn btn-primary pull-right" {{action "redeemReward" reward wallet.firstObject}}><span class="glyphicon glyphicon-ok"></span> Done</button>
+							<div class="btn-group pull-right">
+								<button class="btn btn-default" {{action "deleteReward" reward}}><span class="glyphicon glyphicon-remove-circle"></span> Delete</button>
+								<button class="btn btn-default" {{action "startEditReward" reward}}><span class="glyphicon glyphicon-pencil"></span> Edit</button>
+								<button class="btn btn-primary" {{action "redeemReward" reward wallet.firstObject}}><span class="glyphicon glyphicon-ok"></span> Claim</button>
+							</div>
 						</div>
 						<div class="panel-body" {{bindAttr id="reward.editId"}} hidden>
 							<div>Name: {{input type='text' value=reward.name name='updateRewardName'}}</div>
