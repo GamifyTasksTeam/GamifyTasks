@@ -79,8 +79,13 @@ if ('development' == app.get('env')) {
 }
 else {
 	//TODO production keys
-	options.key = fs.readFileSync('devKeys/key.pem');
-	options.cert = fs.readFileSync('devKeys/cert.pem');
+	options.key = fs.readFileSync('productionKeys/private.key');
+	options.cert = fs.readFileSync('productionKeys/gamifytasks_com.crt');
+	options.ca = [
+		fs.readFileSync('productionKeys/COMODORSADomainValidationSecureServerCA.crt'),
+		fs.readFileSync('productionKeys/COMODORSAAddTrustCA.crt'),
+		fs.readFileSync('productionKeys/AddTrustExternalCARoot.crt')
+	];
 }
 
 https.createServer(options, app).listen(app.get('httpsPort'), function() {
