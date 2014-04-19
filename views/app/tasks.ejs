@@ -6,8 +6,8 @@
 					<div class="panel panel-task">
 						<div class="panel-heading">
 							<h3 class="panel-title">Task: {{task.name}}</h3>
-							<button class="delete" {{action "deleteTask" task}}>Delete</button>
-							<button class="delete" {{action "startEditTask" task}}>Edit</button>
+							<button class="btn btn-default" {{action "deleteTask" task}}><span class="glyphicon glyphicon-remove-circle"></span> Delete</button>
+							<button class="btn btn-default" {{action "startEditTask" task}}><span class="glyphicon glyphicon-pencil"></span> Edit</button>
 						</div>
 						<div class="panel-body" {{bindAttr id="task.normalId"}}>
 						

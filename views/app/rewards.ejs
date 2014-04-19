@@ -6,8 +6,8 @@
 				<div class="panel panel-reward">
 					<div class="panel-heading">
 						<h3 class="panel-title">Reward: {{reward.name}}</h3>
-						<button class="delete" {{action "deleteReward" reward}}>Delete</button>
-						<button class="delete" {{action "startEditReward" reward}}>Edit</button>
+						<button class="btn btn-default" {{action "deleteReward" reward}}><span class="glyphicon glyphicon-remove-circle"></span> Delete</button>
+						<button class="btn btn-default" {{action "startEditReward" reward}}><span class="glyphicon glyphicon-pencil"></span> Edit</button>
 					</div>
 					<div class="panel-body" {{bindAttr id="reward.normalId"}}>
 						

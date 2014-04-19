@@ -78,7 +78,6 @@ if ('development' == app.get('env')) {
 	options.cert = fs.readFileSync('devKeys/cert.pem');
 }
 else {
-	//TODO production keys
 	options.key = fs.readFileSync('productionKeys/private.key');
 	options.cert = fs.readFileSync('productionKeys/gamifytasks_com.crt');
 	options.ca = [
