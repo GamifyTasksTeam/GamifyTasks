@@ -11,7 +11,7 @@
 						<div class="panel-heading">
 							<h3 class="panel-title">Task: {{task.name}}</h3>
 						</div>
-						<div class="panel-body" {{bindAttr id="task.normalId"}}>
+						<div class="panel-body" {{bind-attr id="task.normalId"}}>
 						
 							<span> Red: <strong class="redPoints">{{task.red}}</strong></span>
 							<span> Green: <strong class="greenPoints">{{task.green}}</strong></span>
@@ -24,8 +24,8 @@
 							</div>
 						</div>
 						
-						<div class="panel-body" {{bindAttr id="task.editId"}} hidden>
-							<form class="taskForm" {{bindAttr id="task.id"}} {{action "finishEditTask" task wallet.firstObject on="submit"}}>
+						<div class="panel-body" {{bind-attr id="task.editId"}} hidden>
+							<form class="taskForm" {{bind-attr id="task.id"}} {{action "finishEditTask" task wallet.firstObject on="submit"}}>
 								<div class="row-fluid">
 									<div class="col-md-12  less-padded-column">
 										<div class="input-group">

@@ -14,7 +14,7 @@
 							<span class="pull-right glyphicon glyphicon-pushpin"></span>
 						{{/if}}
 					</div>
-					<div class="panel-body" {{bindAttr id="reward.normalId"}}>
+					<div class="panel-body" {{bind-attr id="reward.normalId"}}>
 						
 							<span> Red: <strong class="redPoints">{{reward.red}}</strong></span>
 							<span> Green: <strong class="greenPoints">{{reward.green}}</strong></span>
@@ -27,8 +27,8 @@
 							</div>
 					</div>
 
-					<div class="panel-body" {{bindAttr id="reward.editId"}} hidden>
-						<form class="rewardForm" {{bindAttr id="reward.id"}} {{action "finishEditReward" reward wallet.firstObject on="submit"}}>
+					<div class="panel-body" {{bind-attr id="reward.editId"}} hidden>
+						<form class="rewardForm" {{bind-attr id="reward.id"}} {{action "finishEditReward" reward wallet.firstObject on="submit"}}>
 							<div class="row-fluid">
 								<div class="col-md-12  less-padded-column">
 									<div class="input-group">
