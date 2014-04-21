@@ -5,6 +5,7 @@ Gamify.Reward = DS.Model.extend({
 	purple: DS.attr('number'),
 	red: DS.attr('number'),
 	blue: DS.attr('number'),
+	persistent: DS.attr('boolean'),
 	normalId: function() {
     return  this.get('id')+"normal";
   }.property('id'),

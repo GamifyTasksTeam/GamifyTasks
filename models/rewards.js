@@ -6,6 +6,7 @@ var rewardSchema = new mongoose.Schema({
 	purple: Number,
 	red: Number,
 	blue: Number,
+	persistent: Boolean
 });
 
 exports.Reward = mongoose.model('Reward', rewardSchema);

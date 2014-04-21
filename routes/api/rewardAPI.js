@@ -42,7 +42,8 @@ exports.addReward = function(req, res) {
 			green : req.body.reward.green,
 			purple : req.body.reward.purple,
 			red : req.body.reward.red,
-			blue : req.body.reward.blue
+			blue : req.body.reward.blue,
+			persistent : req.body.reward.persistent
 		});
 	}
 	catch (err) {
@@ -72,7 +73,8 @@ exports.updateReward = function(req, res) {
 		green : req.body.reward.green,
 		purple : req.body.reward.purple,
 		red : req.body.reward.red,
-		blue : req.body.reward.blue
+		blue : req.body.reward.blue,
+		persistent : req.body.reward.persistent
 	},
 	{ upsert : true },
 	function(err, reward) {

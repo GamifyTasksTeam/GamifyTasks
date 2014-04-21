@@ -55,8 +55,10 @@ Gamify.GamifyController = Ember.ObjectController.extend({
 			wallet.set('green', wallet.get('green') - reward.get('green'));
 			wallet.set('blue', wallet.get('blue') - reward.get('blue'));
 			wallet.set('purple', wallet.get('purple') - reward.get('purple'));
-			reward.deleteRecord();
-			reward.save();
+			if (!reward.get('persistent')) {
+				reward.deleteRecord();
+				reward.save();
+			}
 			wallet.save();
 		},
 		
@@ -67,7 +69,8 @@ Gamify.GamifyController = Ember.ObjectController.extend({
 				red : parseInt(this.get('newRewardRed')),
 				green : parseInt(this.get('newRewardGreen')),
 				blue : parseInt(this.get('newRewardBlue')),
-				purple : parseInt(this.get('newRewardPurple'))
+				purple : parseInt(this.get('newRewardPurple')),
+				persistent : this.get('newRewardPersistent')
 			});
 
 			// Clear the "New Todo" text field
@@ -76,6 +79,7 @@ Gamify.GamifyController = Ember.ObjectController.extend({
 			this.set('newRewardGreen', '');
 			this.set('newRewardBlue', '');
 			this.set('newRewardPurple', '');
+			this.set('newRewardPersistent', false)
 
 			// Save the new model
 			reward.save();

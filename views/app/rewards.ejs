@@ -4,8 +4,11 @@
 		<div class="row-fluid">
 			<div class="col-md-12">
 				<div class="panel panel-reward">
-					<div class="panel-heading">
-						<h3 class="panel-title">Reward: {{reward.name}}</h3>
+					<div class="panel-heading clearfix">
+						<h3 class="pull-left panel-title">Reward: {{reward.name}}</h3>
+						{{#if reward.persistent }}
+							<span class="pull-right glyphicon glyphicon-pushpin"></span>
+						{{/if}}
 					</div>
 					<div class="panel-body" {{bindAttr id="reward.normalId"}}>
 						
@@ -27,6 +30,7 @@
 							<span> Blue: {{view Gamify.NumberField min='0' max='999' step='1' value=reward.blue name='updateRewardBlue' maxlength='3' class='bluePoints inputPoints' }} </span>
 							<span> Purple: {{view Gamify.NumberField min='0' max='999' step='1' value=reward.purple name='updateRewardPurple' maxlength='3' class='purplePoints inputPoints' }} </span>
 							<button class="btn btn-primary pull-right" {{action "finishEditReward" reward wallet.firstObject}}><span class="glyphicon glyphicon-ok"></span> Save</button>
+							<div> Pin Reward {{input type="checkbox" class="toggle" name='persistent' checked=reward.persistent}} (Do not remove after claiming)</div>
 						</div>
 				</div>
 			</div>
@@ -49,6 +53,7 @@
 						<button class="btn btn-primary pull-right" type='submit'>
 							<span class="glyphicon glyphicon-plus"></span> Add
 						</button>
+						<div> Pin Reward {{input type="checkbox" class="toggle" name='persistent' checked=newRewardPersistent}} (Do not remove after claiming)</div>
 					</form>
 					<ul id="newRewardFormError"></ul>
 				</div>
