@@ -28,51 +28,53 @@
 					</div>
 
 					<div class="panel-body" {{bindAttr id="reward.editId"}} hidden>
-						<div class="row-fluid">
-							<div class="col-md-12  less-padded-column">
-								<div class="input-group">
-									<span class="input-group-addon">Name</span>
-									{{input type='text' value=reward.name name='updateRewardName' class='form-control'}}
+						<form class="rewardForm" {{bindAttr id="reward.id"}} {{action "finishEditReward" reward wallet.firstObject on="submit"}}>
+							<div class="row-fluid">
+								<div class="col-md-12  less-padded-column">
+									<div class="input-group">
+										<span class="input-group-addon">Name</span>
+										{{input type='text' value=reward.name name='rewardName' class='form-control'}}
+									</div>
 								</div>
 							</div>
-						</div>
-						<div class="row-fluid row-buffer-small">
-							<div class="col-md-3 less-padded-column">
-								<span class="input-group">
-									<span class="input-group-addon">Red</span>
-									{{view Gamify.NumberField min='0' max='999' step='1' value=reward.red name='updateRewardRed' maxlength='3' class='form-control redPoints inputPoints' }}
-								</span>
+							<div class="row-fluid row-buffer-small">
+								<div class="col-md-3 less-padded-column">
+									<span class="input-group">
+										<span class="input-group-addon">Red</span>
+										{{view Gamify.NumberField min='0' max='999' step='1' value=reward.red name='rewardRed' maxlength='3' class='form-control redPoints inputPoints' }}
+									</span>
+								</div>
+								<div class="col-md-3 less-padded-column"> 
+									<span class="input-group">
+										<span class="input-group-addon">Green</span>
+										{{view Gamify.NumberField min='0' max='999' step='1' value=reward.green name='rewardGreen' maxlength='3' class='form-control greenPoints inputPoints' }}
+									</span>
+								</div>
+								<div class="col-md-3 less-padded-column">
+									<span class="input-group">
+										<span class="input-group-addon">Blue</span>
+										{{view Gamify.NumberField min='0' max='999' step='1' value=reward.blue name='rewardBlue' maxlength='3' class='form-control bluePoints inputPoints' }}
+									</span>
+								</div>
+								<div class="col-md-3 less-padded-column">							
+									<span class="input-group">
+										<span class="input-group-addon">Purple</span>
+										{{view Gamify.NumberField min='0' max='999' step='1' value=reward.purple name='rewardPurple' maxlength='3' class='form-control purplePoints inputPoints' }}
+									</span>
+								</div>
 							</div>
-							<div class="col-md-3 less-padded-column"> 
-								<span class="input-group">
-									<span class="input-group-addon">Green</span>
-									{{view Gamify.NumberField min='0' max='999' step='1' value=reward.green name='updateRewardGreen' maxlength='3' class='form-control greenPoints inputPoints' }}
-								</span>
+							
+							<div class="row-fluid">
+								<div class="col-md-10  less-padded-column">Pin Reward {{input type="checkbox" class="toggle" name='persistent' checked=reward.persistent }} (Do not remove after claiming)</div>
+								<div class="col-md-2  less-padded-column">
+									<button class="btn btn-primary pull-right" type="submit">
+										<span class="glyphicon glyphicon-ok"></span>
+										<span>Save</span>
+									</button>
+								</div>
 							</div>
-							<div class="col-md-3 less-padded-column">
-								<span class="input-group">
-									<span class="input-group-addon">Blue</span>
-									{{view Gamify.NumberField min='0' max='999' step='1' value=reward.blue name='updateRewardBlue' maxlength='3' class='form-control bluePoints inputPoints' }}
-								</span>
-							</div>
-							<div class="col-md-3 less-padded-column">							
-								<span class="input-group">
-									<span class="input-group-addon">Purple</span>
-									{{view Gamify.NumberField min='0' max='999' step='1' value=reward.purple name='updateRewardPurple' maxlength='3' class='form-control purplePoints inputPoints' }}
-								</span>
-							</div>
-						</div>
-						
-						<div class="row-fluid">
-							<div class="col-md-10  less-padded-column">Pin Reward {{input type="checkbox" class="toggle" name='persistent' checked=reward.persistent }} (Do not remove after claiming)</div>
-							<div class="col-md-2  less-padded-column">
-								<button class="btn btn-primary pull-right" {{action "finishEditReward" reward wallet.firstObject}}>
-									<span class="glyphicon glyphicon-ok"></span>
-									<span>Save</span>
-								</button>
-							</div>
-						</div>
-						<ul class="rewardFormError"></ul>
+							<ul class="rewardFormError"></ul>
+						</form>
 					</div>
 				</div>
 			</div>
@@ -85,12 +87,12 @@
 					<h3 class="panel-title">Add New Reward</h3>
 				</div>
 				<div class="panel-body">
-					<form id="newRewardForm" {{action "addReward" on="submit"}}>
+					<form id="newRewardForm" class="rewardForm" {{action "addReward" on="submit"}}>
 						<div class="row-fluid">
 							<div class="col-md-12  less-padded-column">
 								<div class="input-group">
 									<span class="input-group-addon">Name</span>
-									{{input type='text' value=newRewardTitle name='newRewardName' class='form-control'}}
+									{{input type='text' value=newRewardTitle name='rewardName' class='form-control'}}
 								</div>
 							</div>
 						</div>
@@ -98,25 +100,25 @@
 							<div class="col-md-3 less-padded-column">
 								<span class="input-group">
 									<span class="input-group-addon">Red</span>
-									{{view Gamify.NumberField min='0' max='999' step='1' value=newRewardRed name='newRewardRed' maxlength='3' class='form-control redPoints inputPoints' }}
+									{{view Gamify.NumberField min='0' max='999' step='1' value=newRewardRed name='rewardRed' maxlength='3' class='form-control redPoints inputPoints' }}
 								</span>
 							</div>
 							<div class="col-md-3 less-padded-column"> 
 								<span class="input-group">
 									<span class="input-group-addon">Green</span>
-									{{view Gamify.NumberField min='0' max='999' step='1' value=newRewardGreen name='newRewardGreen' maxlength='3' class='form-control greenPoints inputPoints' }}
+									{{view Gamify.NumberField min='0' max='999' step='1' value=newRewardGreen name='rewardGreen' maxlength='3' class='form-control greenPoints inputPoints' }}
 								</span>
 							</div>
 							<div class="col-md-3 less-padded-column">
 								<span class="input-group">
 									<span class="input-group-addon">Blue</span>
-									{{view Gamify.NumberField min='0' max='999' step='1' value=newRewardBlue name='newRewardBlue' maxlength='3' class='form-control bluePoints inputPoints' }}
+									{{view Gamify.NumberField min='0' max='999' step='1' value=newRewardBlue name='rewardBlue' maxlength='3' class='form-control bluePoints inputPoints' }}
 								</span>
 							</div>
 							<div class="col-md-3 less-padded-column">							
 								<span class="input-group">
 									<span class="input-group-addon">Purple</span>
-									{{view Gamify.NumberField min='0' max='999' step='1' value=newRewardPurple name='newRewardPurple' maxlength='3' class='form-control purplePoints inputPoints' }}
+									{{view Gamify.NumberField min='0' max='999' step='1' value=newRewardPurple name='rewardPurple' maxlength='3' class='form-control purplePoints inputPoints' }}
 								</span>
 							</div>
 						</div>
@@ -124,13 +126,13 @@
 						<div class="row-fluid">
 							<div class="col-md-10  less-padded-column">Pin Reward {{input type="checkbox" class="toggle" name='persistent' checked=newRewardPersistent}} (Do not remove after claiming)</div>
 							<div class="col-md-2  less-padded-column">
-								<button class="btn btn-primary pull-right" type='submit'>
+								<button class="btn btn-primary pull-right" type="submit">
 									<span class="glyphicon glyphicon-plus"></span> Add
 								</button>
 							</div>
 						</div>
+						<ul class="rewardFormError"></ul>
 					</form>
-					<ul id="newRewardFormError"></ul>
 				</div>
 			</div>
 		</div>

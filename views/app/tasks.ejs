@@ -25,52 +25,53 @@
 						</div>
 						
 						<div class="panel-body" {{bindAttr id="task.editId"}} hidden>
-							<div class="row-fluid">
-								<div class="col-md-12  less-padded-column">
-									<div class="input-group">
-										<span class="input-group-addon">Name</span>
-										{{input type='text' value=task.name name='updateTaskName' class='form-control'}}
+							<form class="taskForm" {{bindAttr id="task.id"}} {{action "finishEditTask" task wallet.firstObject on="submit"}}>
+								<div class="row-fluid">
+									<div class="col-md-12  less-padded-column">
+										<div class="input-group">
+											<span class="input-group-addon">Name</span>
+											{{input type='text' value=task.name name='taskName' class='form-control'}}
+										</div>
 									</div>
 								</div>
-							</div>
-							<div class="row-fluid row-buffer-small">
-								<div class="col-md-3 less-padded-column">
-									<span class="input-group">
-										<span class="input-group-addon">Red</span>
-										{{view Gamify.NumberField min='0' max='999' step='1' value=task.red name='updateTaskRed' maxlength='3' class='form-control redPoints inputPoints' }}
-									</span>
+								<div class="row-fluid row-buffer-small">
+									<div class="col-md-3 less-padded-column">
+										<span class="input-group">
+											<span class="input-group-addon">Red</span>
+											{{view Gamify.NumberField min='0' max='999' step='1' value=task.red name='taskRed' maxlength='3' class='form-control redPoints inputPoints' }}
+										</span>
+									</div>
+									<div class="col-md-3 less-padded-column"> 
+										<span class="input-group">
+											<span class="input-group-addon">Green</span>
+											{{view Gamify.NumberField min='0' max='999' step='1' value=task.green name='taskGreen' maxlength='3' class='form-control greenPoints inputPoints' }}
+										</span>
+									</div>
+									<div class="col-md-3 less-padded-column">
+										<span class="input-group">
+											<span class="input-group-addon">Blue</span>
+											{{view Gamify.NumberField min='0' max='999' step='1' value=task.blue name='taskBlue' maxlength='3' class='form-control bluePoints inputPoints' }}
+										</span>
+									</div>
+									<div class="col-md-3 less-padded-column">							
+										<span class="input-group">
+											<span class="input-group-addon">Purple</span>
+											{{view Gamify.NumberField min='0' max='999' step='1' value=task.purple name='taskPurple' maxlength='3' class='form-control purplePoints inputPoints' }}
+										</span>
+									</div>
 								</div>
-								<div class="col-md-3 less-padded-column"> 
-									<span class="input-group">
-										<span class="input-group-addon">Green</span>
-										{{view Gamify.NumberField min='0' max='999' step='1' value=task.green name='updateTaskGreen' maxlength='3' class='form-control greenPoints inputPoints' }}
-									</span>
+								
+								<div class="row-fluid">
+									<div class="col-md-12  less-padded-column">
+										<button class="btn btn-primary pull-right" type="submit">
+											<span class="glyphicon glyphicon-ok"></span>
+											<span>Save</span>
+										</button>
+									</div>
 								</div>
-								<div class="col-md-3 less-padded-column">
-									<span class="input-group">
-										<span class="input-group-addon">Blue</span>
-										{{view Gamify.NumberField min='0' max='999' step='1' value=task.blue name='updateTaskBlue' maxlength='3' class='form-control bluePoints inputPoints' }}
-									</span>
-								</div>
-								<div class="col-md-3 less-padded-column">							
-									<span class="input-group">
-										<span class="input-group-addon">Purple</span>
-										{{view Gamify.NumberField min='0' max='999' step='1' value=task.purple name='updateTaskPurple' maxlength='3' class='form-control purplePoints inputPoints' }}
-									</span>
-								</div>
-							</div>
-							
-							<div class="row-fluid">
-								<div class="col-md-12  less-padded-column">
-									<button class="btn btn-primary pull-right" {{action "finishEditTask" task wallet.firstObject}}>
-										<span class="glyphicon glyphicon-ok"></span>
-										<span>Save</span>
-									</button>
-								</div>
-							</div>
-							<ul class="taskFormError"></ul>
+								<ul class="taskFormError"></ul>
+							</form>
 						</div>
-						
 					</div>				
 				</div>
 			</div>
@@ -83,12 +84,12 @@
 					</div>
 
 					<div class="panel-body">
-						<form id="newTaskForm" {{action "addTask" on="submit"}}>
+						<form id="newTaskForm" class="taskForm" {{action "addTask" on="submit"}}>
 							<div class="row-fluid">
 								<div class="col-md-12  less-padded-column">
 									<div class="input-group">
 										<span class="input-group-addon">Name</span>
-										{{input type='text' value=newTitle name='newTaskName' class='form-control'}}
+										{{input type='text' value=newTitle name='taskName' class='form-control'}}
 									</div>
 								</div>
 							</div>
@@ -96,25 +97,25 @@
 								<div class="col-md-3 less-padded-column">
 									<span class="input-group">
 										<span class="input-group-addon">Red</span>
-										{{view Gamify.NumberField min='0' max='999' step='1' value=newRed name='newTaskRed' maxlength='3' class='form-control redPoints inputPoints' }}
+										{{view Gamify.NumberField min='0' max='999' step='1' value=newRed name='taskRed' maxlength='3' class='form-control redPoints inputPoints' }}
 									</span>
 								</div>
 								<div class="col-md-3 less-padded-column"> 
 									<span class="input-group">
 										<span class="input-group-addon">Green</span>
-										{{view Gamify.NumberField min='0' max='999' step='1' value=newGreen name='newTaskGreen' maxlength='3' class='form-control greenPoints inputPoints' }}
+										{{view Gamify.NumberField min='0' max='999' step='1' value=newGreen name='taskGreen' maxlength='3' class='form-control greenPoints inputPoints' }}
 									</span>
 								</div>
 								<div class="col-md-3 less-padded-column">
 									<span class="input-group">
 										<span class="input-group-addon">Blue</span>
-										{{view Gamify.NumberField min='0' max='999' step='1' value=newBlue name='newTaskBlue' maxlength='3' class='form-control bluePoints inputPoints' }}
+										{{view Gamify.NumberField min='0' max='999' step='1' value=newBlue name='taskBlue' maxlength='3' class='form-control bluePoints inputPoints' }}
 									</span>
 								</div>
 								<div class="col-md-3 less-padded-column">							
 									<span class="input-group">
 										<span class="input-group-addon">Purple</span>
-										{{view Gamify.NumberField min='0' max='999' step='1' value=newPurple name='newTaskPurple' maxlength='3' class='form-control purplePoints inputPoints' }}
+										{{view Gamify.NumberField min='0' max='999' step='1' value=newPurple name='taskPurple' maxlength='3' class='form-control purplePoints inputPoints' }}
 									</span>
 								</div>
 							</div>
@@ -126,8 +127,8 @@
 									</button>
 								</div>
 							</div>
+							<ul class="taskFormError"></ul>
 						</form>
-						<ul id="newTaskFormError"></ul>
 					</div>
 				</div>			
 			</div>
