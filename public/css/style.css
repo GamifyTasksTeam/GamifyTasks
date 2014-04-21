@@ -6,12 +6,28 @@ body {
 	padding:30px;
 }
 
+.row-buffer-small {
+	padding-top:50px;
+	padding-bottom:50px;	
+}
+
 .error {
     color: red;
 }
 
+.less-padded-column {
+	padding-left:2px;
+	padding-right:2px;
+}
+
+.input-group-addon {
+	padding-left:5px;
+	padding-right:5px;
+}
+
 .inputPoints {
-	width: 4em;
+	padding:0px;
+	text-align:center;
 }
 
 .redPoints {
