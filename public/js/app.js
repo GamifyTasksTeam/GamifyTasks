@@ -22,8 +22,10 @@ Gamify.GamifyView = Ember.View.extend({
     	this.get('controller').on('itemAdded', this, this.setupValidation);
     },
     setupValidation: function() {
-	  Ember.run.scheduleOnce('afterRender', this, function() {
-	    	window.ClientValidation();
+	  Ember.run.next(this, function() {
+		  setTimeout(function() {
+			  window.ClientValidation();
+		  }, 100);
 	  });
     }
 });
