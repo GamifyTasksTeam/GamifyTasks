@@ -1,4 +1,4 @@
-Gamify.GamifyController = Ember.ObjectController.extend({
+Gamify.GamifyController = Ember.ObjectController.extend(Ember.Evented, {
 	actions: {
 		finishTask: function (task, wallet) {
 			wallet.set('red', wallet.get('red')+task.get('red'));
@@ -28,6 +28,7 @@ Gamify.GamifyController = Ember.ObjectController.extend({
 	
 			// Save the new model
 			task.save();
+			this.trigger('itemAdded');
 		},
 		
 		startEditTask: function(task){
@@ -83,6 +84,8 @@ Gamify.GamifyController = Ember.ObjectController.extend({
 
 			// Save the new model
 			reward.save();
+			
+			this.trigger('itemAdded');
 		},
 		startEditReward: function(reward){
 			var normal = "#"+reward.id+"normal";
